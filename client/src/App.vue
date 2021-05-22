@@ -2,7 +2,6 @@
   <div id="app">
     <div id="nav">
       <router-link :to="{name:'Home'}">Home</router-link> |
-      <router-link :to="{name:'RecommendMovie'}">추천 영화</router-link> |
       <router-link :to="{ name:'Community'}">커뮤니티</router-link> |
       
     <span v-if="isLogin">
@@ -35,13 +34,11 @@ export default {
   methods: {
     getMovies: function () {
       axios({
-        method: 'get',
+        method:'get',
         url: 'http://127.0.0.1:8000/movies/',
-        // url: 'https://api.themoviedb.org/3/movie/top_rated?api_key=ba63b1ddcacdc9265f089a977d88f6e0&language=ko-KR',
       })
         .then(res => {
-          this.movies = res.data.results
-          console
+          this.movies = res.data
         })
         .catch(err => { 
           console.log(err)

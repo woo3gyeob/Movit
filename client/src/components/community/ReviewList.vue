@@ -22,13 +22,6 @@ export default {
   data() {
     return {
       reviews : [
-        {
-          id:343,
-          username: '1',
-          title:'하이',
-          content: '이히',
-          
-        },
       ],
       currentPage: 1,
       perPage:10,
@@ -78,6 +71,7 @@ export default {
   },
   created () {
     this.getReviews()
-  }
+  },
+
 }
 </script>

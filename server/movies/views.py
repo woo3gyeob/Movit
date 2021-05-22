@@ -15,6 +15,7 @@ from .models import Movie
 def index(request):
     if request.method == 'GET':
         movies = get_list_or_404(Movie)
+        movies = movies[:15]
         serializer = MovieSerializer(movies, many=True)
         return Response(serializer.data)
 

@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Mypage from '../views/Mypage.vue'
 import Community from '../views/Community.vue'
-import RecommendMovie from '../views/RecommendMovie.vue'
 import ReviewForm from '@/components/community/ReviewForm.vue'
 import ReviewListDetail from '@/components/community/ReviewListDetail.vue'
 import Login from '../views/accounts/Login.vue'
@@ -26,11 +25,6 @@ const routes = [
     path: '/community',
     name: 'Community',
     component: Community
-  },
-  {
-    path: '/',
-    name: 'RecommendMovie',
-    component: RecommendMovie
   },
   {
     path: '/community/create',
