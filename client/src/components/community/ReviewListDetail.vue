@@ -1,9 +1,12 @@
 <template>
   <div>
-    디테일
-    {{ review.title }}
-    {{ review.content}}
-    <ReviewListDetailComment/>
+    <h4>제목: {{ review.title }}</h4>
+    <p>내용: {{ review.content }}</p>
+    <ReviewListDetailComment 
+      :commentCount="review.comment_count"
+      :commentSet="review.comment_set"
+      :reviewId ="review.id"
+    />
   </div>
 </template>
 
@@ -18,25 +21,25 @@ export default {
   },
   data () {
     return {
-      review:null,
+      review:{},
     }
   },
   methods:{
     getReviewDetail () {
       axios({
         method:'get',
-        url: `community/${this.$route.params.reviewId}/`
+        url: `http://127.0.0.1:8000/community/${this.$route.params.reviewId}/`
       })
         .then(res =>{
-          console.log(res)
           this.review = res.data
+
         })
         .catch(err => {
           console.log(err)
         })
     }
   },
-  created () {
+  mounted () {
     this.getReviewDetail()
   }
 
