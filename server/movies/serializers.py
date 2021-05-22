@@ -1,14 +1,19 @@
 from rest_framework import serializers
-from .models import Movie, Comment
+from .models import Movie, Comment, Genre
 
-class MovieSerializer(serializers.ModelSerializer):
-
+class GenreSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Movie
+        model = Genre
         fields = '__all__'
 
 class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
+        fields = '__all__'
+
+class MovieSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Movie
         fields = '__all__'

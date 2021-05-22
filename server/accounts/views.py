@@ -30,7 +30,7 @@ def signup(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET'])
-def profile(request, user_id):
-    user = get_object_or_404(get_user_model(), pk=user_id)
+def profile(request):
+    user = get_object_or_404(get_user_model(), pk=request.user.pk)
     serializer = UserProfileSerializer(user)
     return Response(serializer.data)
