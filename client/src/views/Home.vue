@@ -8,18 +8,40 @@
 
 <script>
 // @ is an alias to /src
+import axios from 'axios'
 import MovieCard from '@/components/MovieCard'
 
 export default {
   name: 'Home',
-  props: {
-    movies: {
-      type: Array,
-    }
-  },
   components:{
     MovieCard,
   },
+  data () {
+    return {
+      movies: [],
+    }
+  },
+  methods: {
+    getMovies: function () {
+      axios({
+        method:'get',
+        url: 'http://127.0.0.1:8000/movies/',
+      })
+        .then(res => {
+          this.movies = res.data
+        })
+        .catch(err => { 
+          console.log(err)
+        })
+    },
+  },
+  created() {
+    this.getMovies()
+    // const token = localStorage.getItem('jwt')
+    // if (token) {
+    //   this.isLogin= true
+    // }
+  }
 
 }
 </script>

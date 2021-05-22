@@ -27,37 +27,22 @@
     </span>
     </div>
     <router-view 
-      :movies="movies"
       @login="login"
     />
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 
 export default {
   name: 'App',
   data: function () {
     return {
-      movies: [],
       isLogin: false,
       currentUser:'',
     }
   },
   methods: {
-    getMovies: function () {
-      axios({
-        method:'get',
-        url: 'http://127.0.0.1:8000/movies/',
-      })
-        .then(res => {
-          this.movies = res.data
-        })
-        .catch(err => { 
-          console.log(err)
-        })
-    },
     login: function (username) {
       this.isLogin = !this.isLogin
       this.currentUser = username
@@ -70,12 +55,6 @@ export default {
     }
   },
   created () {
-    this.getMovies()
-
-    // const token = localStorage.getItem('jwt')
-    // if (token) {
-    //   this.isLogin= true
-    // }
   },
 
 }
