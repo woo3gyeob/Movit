@@ -17,8 +17,7 @@ export default {
       type: Array,
     }
   },
-  created () {
-  }
+
 }
 </script>
 

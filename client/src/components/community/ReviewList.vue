@@ -6,8 +6,6 @@
       hover
       :items="reviews"
       :fields="fields"
-      :per-page="perPage"
-      :current-page="currentPage"
       @row-clicked="rowClick"
     ></b-table>
     <!-- 아직 제대로 구현 안됨(페이지네이션) -->
@@ -23,8 +21,6 @@ export default {
     return {
       reviews : [
       ],
-      currentPage: 1,
-      perPage:10,
       fields: [
         {
           key: 'id',
@@ -46,7 +42,7 @@ export default {
     }
   },
   methods:{
-    getReviews () {
+    getReviews: function () {
       axios({
         method:'get',
         url: 'http://127.0.0.1:8000/community/',

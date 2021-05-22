@@ -1,7 +1,7 @@
 <template>
   <div>
     <img 
-      @click="imgClicked" 
+      @click="imgClicked"   
       :src="`https://image.tmdb.org/t/p/original${movie.poster_path}`" 
       width="250px" alt="image">
 
@@ -10,12 +10,13 @@
         {{ movie.title }}
         <i class="fas fa-times cloesModalBtn" @click="isShowed=false"></i>
       </h3>
-
-      <p slot="body">
-        {{ movie.poster_path}}
-        {{ movie.overview }}
-      </p>
-  
+      <div slot="body">
+        <img 
+          :src="`https://image.tmdb.org/t/p/original${movie.poster_path}`" 
+          width="250px" alt="image">
+          개봉일 : {{ movie.release_date}}
+        <div>{{ movie.overview }}</div>
+      </div>
     </MovieCardDetail>
     <!-- Modal -->
   </div>

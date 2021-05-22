@@ -1,6 +1,5 @@
 <template>
   <div>
-    MyPage 안에서 라우터 설정 하기
     <MyMovieList/>
     <MyReviews/>
   </div>

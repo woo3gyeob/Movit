@@ -23,7 +23,7 @@ export default {
       credentials :{
         username: null,
         password: null,
-      }
+      },
     }
   },
   methods: {
@@ -33,10 +33,9 @@ export default {
         url: 'http://127.0.0.1:8000/accounts/login/',
         data: this.credentials,
       })
-        .then(res => {
-          console.log(res)
+        .then(() => {
           // localStorage.setItem('jwt', res.data.token)
-          this.$emit('login')
+          this.$emit('login', this.credentials.username)
           this.$router.push({name: 'Home'})
         })
         .catch(err => {

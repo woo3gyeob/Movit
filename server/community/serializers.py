@@ -20,10 +20,14 @@ class ReviewSerializer(serializers.ModelSerializer):
         source='comment_set.count', 
         read_only=True
     )
+    def getUsername(self, obj):
+        return obj.user.username
+        
+    username = serializers.SerializerMethodField("getUsername")
 
     class Meta:
         model = Review
-        fields = ('id','title','content','comment_count','comment_set','created_at',)
+        fields = ('id','title','username','content','comment_count','comment_set','created_at',)
         depth = 1
         
 

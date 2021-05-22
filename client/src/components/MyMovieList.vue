@@ -1,18 +1,10 @@
 <template>
   <div>
-    <div class="input-box shadow">
-        <input type="text" v-focus v-model="inputMovie" v-on:keypress.enter="addFavoriteMovie" placeholder="좋아하는 영화를 입력하세요.">
-       <button v-on:click="addFavoriteMovie">추가</button>
-
-       <span class="add-container" v-on:click="addFavoriteMovie">
-          <i class="add-btn fa fa-plus" aria-hidden="true"></i>
-       </span>
+    <div class="shadow">
+      <li v-for="favoriteMovie in myFavoriteMovies" :key="favoriteMovie.id" class="shadow">
+        <h4>{{ favoriteMovie.title }}</h4>
+      </li>
     </div>
-
-    <li v-for="favoriteMovie in myFavoriteMovies" :key="favoriteMovie.id" class="shadow">
-      <h4>{{ favoriteMovie.title }}</h4>
-
-    </li>
   </div>
 </template>
 
@@ -23,7 +15,6 @@ export default {
   name:'MyMovieList',
   data (){
     return {
-      inputMovie:'',
       myFavoriteMovies: [
         {
           id:123,
@@ -53,15 +44,6 @@ export default {
       //     console.log(err)
       //   })
     },
-    addFavoriteMovie () {
-      // 추가 기능 영화제목 입력하면, 영화 정보 보내주는 걸로
-      const newMovie = {
-        title: this.inputMovie
-        // id:, 아이디는 어케 처리하지
-      }
-      this.myFavoriteMovies.push(newMovie) 
-      this.inputMovie=''  
-    }
   },
   created () {
     // this.getFavoriteMovies()
@@ -74,6 +56,7 @@ export default {
   ul {
     list-style-type: none;
     padding-left: 0px;
+    width:75vh;
     margin-top: 0px;
     text-align: left;
   }
@@ -89,26 +72,5 @@ export default {
   }
   input:focus {
     outline: none;
-  }
-  .input-box {
-    background: white;
-    height: 50px;
-    line-height: 50px;
-    border-radius: 5px;
-  }
-  .input-box input {
-    border-style: none;
-    font-size: 0.9rem;
-  }
-  .add-container {
-    float: right;
-    background: linear-gradient(to right, #6478FB, #8763FB);
-    display: inline-block;
-    width: 3rem;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-  }
-  .add-btn {
-    color: white;
   }
 </style>
