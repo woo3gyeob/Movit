@@ -8,7 +8,8 @@ from rest_framework.permissions import IsAuthenticated
 # from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from .serializers import CommentSerializer, MovieSerializer
-from .models import Movie
+from .models import Movie, Comment
+from random import sample
 
 # Create your views here.
 @api_view(['GET'])
@@ -19,6 +20,23 @@ def index(request):
         serializer = MovieSerializer(movies, many=True)
         return Response(serializer.data)
 
+@api_view(['GET'])
+def MovieRecommend(request):
+    if request.user.liked_movie.all():
+        genre_cnt = dict()
+        movies = request.user.liked_movie.all()
+        for movie in movies:
+            genres = movie.genres.all()
+            for genre in genres:
+                genre_cnt[genre.pk] = genre_cnt.get(genre.pk, 0) + 1
+        favor_genre = sorted(genre_cnt.items(), key=lambda x : x[1], reverse=True)[0][0]
+        movies = list(Movie.objects.filter(genres=favor_genre).all())
+    else:
+        movies = list(Movie.objects.filter(vote_average__gte=7).all())
+    movie = sample(movies,15)
+    serializer = MovieSerializer(movie, many=True)
+    return Response(serializer.data)
+    
 @api_view(['GET'])
 def detail(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
@@ -34,3 +52,26 @@ def like(request, movie_pk):
         movie.like.add(request.user)
     serializer = MovieSerializer(movie)
     return Response(serializer.data)
+
+@api_view(['POST'])
+# @authentication_classes([JSONWebTokenAuthentication])
+# @permission_classes([IsAuthenticated])
+def comment_create(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    serializer = CommentSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(user=request.user, movie=movie)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+@api_view(['DELETE'])
+# @authentication_classes([JSONWebTokenAuthentication])
+# @permission_classes([IsAuthenticated])
+def comment_delete(request, movie_pk, comment_pk):
+    if not request.user.movie_comment_user.filter(pk=comment_pk).exists():
+        return Response({'detail': '권한이 없습니다.'}, status=status.HTTP_403_FORBIDDEN)
+    
+    
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    if request.method == 'DELETE':
+        comment.delete()
+        return Response({'id':comment_pk}, status=status.HTTP_204_NO_CONTENT)
