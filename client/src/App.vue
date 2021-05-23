@@ -18,7 +18,7 @@
       <router-link :to="{name:'Home'}">Home</router-link> |
       <router-link :to="{ name:'Community'}">커뮤니티</router-link> |
     <span v-if="isLogin">
-      <router-link :to="{ name: 'Mypage'}">마이페이지</router-link> |
+      <router-link :to="{ name: 'Profile'}">마이페이지</router-link> |
       <router-link @click.native="logout" to="#">로그아웃</router-link>
     </span>
     <span v-else>

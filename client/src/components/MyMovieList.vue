@@ -1,60 +1,34 @@
 <template>
   <div>
     <div class="shadow">
-      <!-- <li v-for="favoriteMovie in myFavoriteMovies" :key="favoriteMovie.id" class="shadow">
-        <h4>{{ favoriteMovie.title }}</h4>
-      </li> -->
-      <li v-for="favoriteMovie in myFavoriteMovies" :key="favoriteMovie.id" class="shadow">
+      <ul v-for="favoriteMovie in myFavoriteMovies" :key="favoriteMovie.id" class="shadow">
         <h4>{{ favoriteMovie.title }}</h4>
         <div>{{ favoriteMovie.content }}</div>
-      </li>
+      </ul>
+      <div v-if="!myFavoriteMovies.length">"좋아요한 영화가 없습니다."</div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 
 export default {
   name:'MyMovieList',
-  data (){
-    return {
-      myFavoriteMovies: [
-      ],
-    }
+  props: {
+    myFavoriteMovies:{
+      type: Array
+    }  
   },
   methods:{
-    setToken: function () {
-      const token = localStorage.getItem('jwt')
-      const config = {
-        Authorization: `JWT ${token}`,
-      }
-      return config
-    },
-    getFavoriteMovies () {
-      axios({
-        method:'get',
-        url:`http://127.0.0.1:8000/accounts/profile/`,
-        headers: this.setToken(),
-      })
-        .then(res => {
-          console.log(res)
-          this.myFavoriteMovies = res.data.review_set
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
   },
   created () {
-    this.getFavoriteMovies()
   }
 
 }
 </script>
 
 <style scoped>
-  ul {
+  /* ul {
     list-style-type: none;
     padding-left: 0px;
     width:75vh;
@@ -70,7 +44,7 @@ export default {
     padding: 0 0.9rem;
     background: white;
     border-radius: 5px;
-  }
+  } */
   input:focus {
     outline: none;
   }

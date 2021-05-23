@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Mypage from '../views/Mypage.vue'
+import Profile from '../views/Profile.vue'
 import Community from '../views/Community.vue'
 import ReviewForm from '@/components/community/ReviewForm.vue'
 import ReviewListDetail from '@/components/community/ReviewListDetail.vue'
@@ -17,9 +17,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/accounts/mypage',
-    name: 'Mypage',
-    component: Mypage
+    path: '/accounts/profile',
+    name: 'Profile',
+    component: Profile
   },
   {
     path: '/community',
