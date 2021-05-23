@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ReviewList :reviews="reviews"/>
+    <ReviewList />
   </div>
 </template>
 
@@ -10,12 +10,7 @@ import ReviewList from '@/components/community/ReviewList'
 export default {
   name: 'Community',
   components: {
-    ReviewList
-  },
-  props: {
-    reviews: {
-      type: Array,
-    }
+    'ReviewList':ReviewList,
   },
 
 }

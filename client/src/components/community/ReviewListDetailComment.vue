@@ -36,13 +36,13 @@ export default {
   },
   methods: {
     createComment: function () {
-      const comment = {
-        comment: this.newComment,
+      const newComment = {
+        content: this.newComment,
       }
       axios({
         method:'post',
         url: `http://127.0.0.1:8000/community/${this.reviewId}/comment/create/`,
-        data: comment
+        data: newComment
       })
         .then(res => {
           console.log(res)

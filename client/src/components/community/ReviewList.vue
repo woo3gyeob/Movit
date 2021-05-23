@@ -50,7 +50,7 @@ export default {
         .then(res => {
           this.reviews = res.data
         })
-        .catach(err => {
+        .catch(err => {
           console.log(err)
         })
     },
