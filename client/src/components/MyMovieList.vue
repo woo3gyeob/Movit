@@ -1,52 +1,53 @@
 <template>
   <div>
     <div class="shadow">
+      <!-- <li v-for="favoriteMovie in myFavoriteMovies" :key="favoriteMovie.id" class="shadow">
+        <h4>{{ favoriteMovie.title }}</h4>
+      </li> -->
       <li v-for="favoriteMovie in myFavoriteMovies" :key="favoriteMovie.id" class="shadow">
         <h4>{{ favoriteMovie.title }}</h4>
+        <div>{{ favoriteMovie.content }}</div>
       </li>
     </div>
   </div>
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 
 export default {
   name:'MyMovieList',
   data (){
     return {
       myFavoriteMovies: [
-        {
-          id:123,
-          title: '영화제목',
-          overview:'줄거리',
-        },
-        {
-          id:4556,
-          title: '영화제목2',
-          overview:'줄거리',
-
-        }
       ],
     }
   },
   methods:{
+    setToken: function () {
+      const token = localStorage.getItem('jwt')
+      const config = {
+        Authorization: `JWT ${token}`,
+      }
+      return config
+    },
     getFavoriteMovies () {
-      // axios({
-      //   method:'get',
-      //   url:'',
-      // })
-      //   .then(res => {
-      //     console.log()
-      //     this.myFavoriteMovies = res
-      //   })
-      //   .catch(err => {
-      //     console.log(err)
-      //   })
+      axios({
+        method:'get',
+        url:`http://127.0.0.1:8000/accounts/profile/`,
+        headers: this.setToken(),
+      })
+        .then(res => {
+          console.log(res)
+          this.myFavoriteMovies = res.data.review_set
+        })
+        .catch(err => {
+          console.log(err)
+        })
     },
   },
   created () {
-    // this.getFavoriteMovies()
+    this.getFavoriteMovies()
   }
 
 }

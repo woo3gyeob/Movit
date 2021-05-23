@@ -9,7 +9,7 @@
     ></b-form-textarea>
     <br>
     <b-button @click="uploadReview">저장</b-button>&nbsp;
-    <b-button @click="cancle">취소</b-button>
+    <b-button @click="cancel">취소</b-button>
   </div>
 </template>
 
@@ -27,11 +27,19 @@ export default {
     }
   },
   methods:{
+    setToken: function () {
+    const token = localStorage.getItem('jwt')
+    const config = {
+      Authorization: `JWT ${token}`,
+    }
+    return config
+    },
     uploadReview () {
       axios({
         method: 'post',
         url: 'http://127.0.0.1:8000/community/create/',
         data: this.review,
+        headers: this.setToken(),
       })
         .then(res => {
           console.log(res)
@@ -43,7 +51,7 @@ export default {
           console.log(err)
         })
     },
-    cancle () {
+    cancel () {
       this.$router.push({
         path:'/community'
       })

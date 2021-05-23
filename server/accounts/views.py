@@ -5,7 +5,10 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import UserSerializer, UserProfileSerializer
 from django.contrib.auth import get_user_model
-
+    
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 @api_view(['POST'])
 def signup(request):
@@ -30,6 +33,8 @@ def signup(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def profile(request):
     user = get_object_or_404(get_user_model(), pk=request.user.pk)
     serializer = UserProfileSerializer(user)
