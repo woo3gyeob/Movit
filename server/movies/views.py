@@ -70,6 +70,7 @@ def comment_delete(request, movie_pk, comment_pk):
     if not request.user.movie_comment_user.filter(pk=comment_pk).exists():
         return Response({'detail': '권한이 없습니다.'}, status=status.HTTP_403_FORBIDDEN)
     
+    
     comment = get_object_or_404(Comment, pk=comment_pk)
     if request.method == 'DELETE':
         comment.delete()
