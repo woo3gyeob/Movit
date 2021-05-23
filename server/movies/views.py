@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 
 from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
-# from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from .serializers import CommentSerializer, MovieSerializer
 from .models import Movie, Comment
@@ -13,6 +13,8 @@ from random import sample
 
 # Create your views here.
 @api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def index(request):
     if request.method == 'GET':
         movies = get_list_or_404(Movie)
@@ -21,6 +23,8 @@ def index(request):
         return Response(serializer.data)
 
 @api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def MovieRecommend(request):
     if request.user.liked_movie.all():
         genre_cnt = dict()
@@ -38,12 +42,16 @@ def MovieRecommend(request):
     return Response(serializer.data)
     
 @api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def detail(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     serializer = MovieSerializer(movie)
     return Response(serializer.data)
 
 @api_view(['POST'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def like(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     if request.user in movie.like.all():
@@ -54,8 +62,8 @@ def like(request, movie_pk):
     return Response(serializer.data)
 
 @api_view(['POST'])
-# @authentication_classes([JSONWebTokenAuthentication])
-# @permission_classes([IsAuthenticated])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def comment_create(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     serializer = CommentSerializer(data=request.data)
@@ -64,8 +72,8 @@ def comment_create(request, movie_pk):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['DELETE'])
-# @authentication_classes([JSONWebTokenAuthentication])
-# @permission_classes([IsAuthenticated])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def comment_delete(request, movie_pk, comment_pk):
     if not request.user.movie_comment_user.filter(pk=comment_pk).exists():
         return Response({'detail': '권한이 없습니다.'}, status=status.HTTP_403_FORBIDDEN)

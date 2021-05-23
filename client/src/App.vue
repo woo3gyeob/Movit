@@ -46,15 +46,18 @@ export default {
     login: function (username) {
       this.isLogin = !this.isLogin
       this.currentUser = username
-      console.log(this.currentUser)
     },
     logout: function () {
       this.isLogin = false
-      // localStorage.removeItem('jwt')
+      localStorage.removeItem('jwt')
       this.$router.push({name:"Home"})
     }
   },
   created () {
+    const token = localStorage.getItem('jwt')
+    if (token) {
+      this.isLogin= true
+    }
   },
 
 }

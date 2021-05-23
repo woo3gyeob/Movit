@@ -12,8 +12,8 @@ from .models import Comment, Review
 
 # Create your views here.
 @api_view(['GET'])
-# @authentication_classes([JSONWebTokenAuthentication])
-# @permission_classes([IsAuthenticated])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def index(request):
     if request.method == 'GET':
         reviews = get_list_or_404(Review)
@@ -21,8 +21,8 @@ def index(request):
         return Response(serializer.data)
 
 @api_view(['GET'])
-# @authentication_classes([JSONWebTokenAuthentication])
-# @permission_classes([IsAuthenticated])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def detail(request, review_pk):
     if request.method == 'GET':
         review = get_object_or_404(Review, pk=review_pk)
@@ -30,8 +30,8 @@ def detail(request, review_pk):
         return Response(serializer.data)
 
 @api_view(['GET','POST'])
-# @authentication_classes([JSONWebTokenAuthentication])
-# @permission_classes([IsAuthenticated])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def create(request):
     if request.method == 'GET':
         serializer = ReviewSerializer(request.user.review_set, many=True)
@@ -45,8 +45,8 @@ def create(request):
 
 
 @api_view(['PUT'])
-# @authentication_classes([JSONWebTokenAuthentication])
-# @permission_classes([IsAuthenticated])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def update(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
     if not request.user.review_set.filter(pk=review_pk):
@@ -59,8 +59,8 @@ def update(request, review_pk):
             return Response(serializer.data)
 
 @api_view(['DELETE'])
-# @authentication_classes([JSONWebTokenAuthentication])
-# @permission_classes([IsAuthenticated])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def delete(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
     if not request.user.review_set.filter(pk=review_pk):
@@ -71,8 +71,8 @@ def delete(request, review_pk):
         return Response({'id':review_pk}, status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['POST'])
-# @authentication_classes([JSONWebTokenAuthentication])
-# @permission_classes([IsAuthenticated])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def comment_create(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
     serializer = CommentSerializer(data=request.data)
@@ -81,8 +81,8 @@ def comment_create(request, review_pk):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['DELETE'])
-# @authentication_classes([JSONWebTokenAuthentication])
-# @permission_classes([IsAuthenticated])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def comment_delete(request, review_pk, comment_pk):
     if not request.user.review_comment_user.filter(pk=comment_pk).exists():
         return Response({'detail': '권한이 없습니다.'}, status=status.HTTP_403_FORBIDDEN)
@@ -93,8 +93,8 @@ def comment_delete(request, review_pk, comment_pk):
         return Response({'id':comment_pk}, status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['POST'])
-# @authentication_classes([JSONWebTokenAuthentication])
-# @permission_classes([IsAuthenticated])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def like(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
     if request.user in review.like.all():

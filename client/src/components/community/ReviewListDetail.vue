@@ -25,10 +25,18 @@ export default {
     }
   },
   methods:{
+    setToken: function () {
+      const token = localStorage.getItem('jwt')
+      const config = {
+        Authorization: `JWT ${token}`,
+      }
+      return config
+    },
     getReviewDetail () {
       axios({
         method:'get',
-        url: `http://127.0.0.1:8000/community/${this.$route.params.reviewId}/`
+        url: `http://127.0.0.1:8000/community/${this.$route.params.reviewId}/`,
+        headers: this.setToken(),
       })
         .then(res =>{
           this.review = res.data
