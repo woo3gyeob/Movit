@@ -1,7 +1,11 @@
 <template>
-  <div>
-    <MyMovieList :myFavoriteMovies="myFavoriteMovies"/>
-    <MyReviews :myReviews="myReviews"/>
+  <div class="app">
+    <div>
+      <MyMovieList :myFavoriteMovies="myFavoriteMovies"/>
+      <br>
+      <br>
+      <MyReviews :myReviews="myReviews"/>
+    </div>
   </div>
 </template>
 
@@ -54,5 +58,7 @@ export default {
 </script>
 
 <style>
-
+#app {
+  background-color: white;
+}
 </style>
