@@ -2,10 +2,14 @@
   <div>
     <h4>제목: {{ review.title }}</h4>
     <p>내용: {{ review.content }}</p>
+    <button @click="updateReviewDetail">수정</button>
+    <button @click="deleteReviewDetail">삭제</button>
     <ReviewListDetailComment 
       :commentCount="review.comment_count"
       :commentSet="review.comment_set"
       :reviewId ="review.id"
+      @new-comment="getReviewDetail"
+      @comment-delete="getReviewDetail"
     />
   </div>
 </template>
@@ -32,7 +36,7 @@ export default {
       }
       return config
     },
-    getReviewDetail () {
+    getReviewDetail: function () {
       axios({
         method:'get',
         url: `http://127.0.0.1:8000/community/${this.$route.params.reviewId}/`,
@@ -40,12 +44,36 @@ export default {
       })
         .then(res =>{
           this.review = res.data
-
         })
         .catch(err => {
           console.log(err)
         })
-    }
+    },
+    deleteReviewDetail: function () {
+      axios({
+        method:'delete',
+        url: `http://127.0.0.1:8000/community/delete/${this.$route.params.reviewId}/`,
+        headers: this.setToken(),
+      })
+        .then(() =>{
+          this.$router.push({name:'Community'})
+        })
+        .catch(() => {
+          alert('작성하신 글이 아닙니다.')
+        })
+    },
+    updateReviewDetail: function () {
+      axios({
+        method:'put',
+        url: `http://127.0.0.1:8000/community/update/${this.$route.params.reviewId}/`,
+        headers: this.setToken(),
+      })
+        .then(() =>{
+        })
+        .catch((err) => {
+          alert(err)
+        })
+    },
   },
   mounted () {
     this.getReviewDetail()

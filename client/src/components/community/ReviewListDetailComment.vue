@@ -5,6 +5,7 @@
     </div>
     <div v-for="comment in commentSet" :key="comment.id">
       <strong>{{comment.username}}</strong> : {{comment.content}}
+      <button @click="deleteReviewComment(comment.id)">삭제</button>
     </div>
     <!-- 로그인한 경우에만 댓글입력할 수 있도록 구현하기-->
     <label for="">댓글 작성: </label>
@@ -53,11 +54,26 @@ export default {
         headers: this.setToken(),
       })
         .then(res => {
+          this.newComment = ''
+          this.$emit('new-comment')
           console.log(res)
         })
         .catch(err => {
           console.log(err)
         })
+    },
+    deleteReviewComment(commentId) {
+      axios({
+        method:'delete',
+        url: `http://127.0.0.1:8000/community/${this.reviewId}/comment/delete/${commentId}`,
+        headers: this.setToken(),
+      })
+        .then(() =>{
+          this.$emit('comment-delete')
+        })
+        .catch((err) => {
+          alert(err)
+        })     
     }
   }
 
