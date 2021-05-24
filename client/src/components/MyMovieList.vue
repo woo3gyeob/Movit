@@ -1,4 +1,4 @@
-<!--<template>
+<template>
   <div>
     <h2 class="mx-5 px-4">내가 좋아한 영화들</h2>
       <div class="shadow container">
@@ -20,63 +20,57 @@
       </div>
   </div>
 </template>
--->
 
+<!--
 <template>
   <div>
     <div class="container">
-      <b-row>
-        <b-col>
-
-          <b-carousel
-            id="carousel-1"
-            v-model="slide"
-            :interval="10000"
-            controls
-            indicators
-            background="#ababab"
-            img-width="10"
-            img-height="15"
-            style="text-shadow: 1px 1px 2px #333;"
-            @sliding-start="onSlideStart"
-            @sliding-end="onSlideEnd"
-          >
+      <div class="p-5 m-5">
+        <b-carousel
+          id="carousel-1"
+          v-model="slide"
+          :interval="2000"
+          controls
+          indicators
+          background="#ababab"
+          img-width="10"
+          img-height="15"
+          style="text-shadow: 1px 1px 2px #333;"
+          @sliding-start="onSlideStart"
+          @sliding-end="onSlideEnd"
+        >
+          <div v-for="favoriteMovie in myFavoriteMovies" :key="favoriteMovie.id">
             <b-carousel-slide
-              v-for="favoriteMovie in myFavoriteMovies" 
-              :key="favoriteMovie.id"
-              :img-src="`https://image.tmdb.org/t/p/original${favoriteMovie.poster_path}`"
+              :img-src="`https://image.tmdb.org/t/p/original${favoriteMovie.poster_path}`" width="100px" height="150px" alt="poster"
             ></b-carousel-slide>
-            
-          </b-carousel>
-          <p class="mt-4">
-            Slide #: {{ slide }}<br>
-            Sliding: {{ sliding }}
-          </p>
-        </b-col>
-      </b-row>
-      
+          </div>
+          
+        </b-carousel>
+      </div>
+        
     </div>
   </div>
 </template>
+-->
 
 <script>
-// import carousel from 'vue-owl-carousel'
-import Vue from 'vue'
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import carousel from 'vue-owl-carousel'
+// import Vue from 'vue'
+// import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
-// Import Bootstrap an BootstrapVue CSS files (order is important)
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+// // Import Bootstrap an BootstrapVue CSS files (order is important)
+// import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 // Make BootstrapVue available throughout your project
-Vue.use(BootstrapVue)
+// Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
-Vue.use(IconsPlugin)
+// Vue.use(IconsPlugin)
 
 export default {
   name:'MyMovieList',
   components: { 
-    // carousel
+    carousel
   },
   props: {
     myFavoriteMovies:{
@@ -89,14 +83,14 @@ export default {
         sliding: null
       }
     },
-  methods: {
-    onSlideStart() {
-      this.sliding = true
-    },
-    onSlideEnd() {
-      this.sliding = false
-    }
-  },
+  // methods: {
+  //   onSlideStart() {
+  //     this.sliding = true
+  //   },
+  //   onSlideEnd() {
+  //     this.sliding = false
+  //   }
+  // },
   created () {
   }
 
