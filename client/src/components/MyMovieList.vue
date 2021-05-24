@@ -1,82 +1,37 @@
-<!--<template>
-  <div>
-    <h2 class="mx-5 px-4">내가 좋아한 영화들</h2>
-      <div class="shadow container">
-        <div>
-          <carousel :autoplay="true" :nav="false" >
-            <template slot="prev"><span class="prev">prev</span></template>
-            <div v-for="favoriteMovie in myFavoriteMovies" :key="favoriteMovie.id" class="px-5 mx-5">
-              <div class="card">
-                <a href="#">
-                  <img :src="`https://image.tmdb.org/t/p/original${favoriteMovie.poster_path}`" width="100px" height="150px" alt="poster">
-                  <p>{{ favoriteMovie.title }}</p>
-                </a>
-              </div>
-            </div>
-            <template slot="next"><span class="next">next</span></template>
-          </carousel>
-        </div>
-        <div v-if="!myFavoriteMovies.length">"좋아요한 영화가 없습니다."</div>
-      </div>
-  </div>
-</template>
--->
-
 <template>
-  <div>
-    <div class="container">
-      <b-row>
-        <b-col>
+  <div class="container">
+    <h2 class="mx-5 px-5">내가 좋아한 영화들</h2>
+      <div>
+        <carousel-3d :disable3d="true" :space="365" :clickable="false" :controls-visible="true">
+          <slide v-for="(favoriteMovie, i) in myFavoriteMovies" :key="favoriteMovie.id" :index="i">
+            <img :src="`https://image.tmdb.org/t/p/original${favoriteMovie.poster_path}`" alt="poster">
+          </slide>
+        </carousel-3d>
+      </div>
+      <div v-if="!myFavoriteMovies.length">"좋아요한 영화가 없습니다."</div>
+      <div id="example">
+        <carousel-3d :autoplay="true" :autoplay-timeout="5000" :display="3">
+          <slide v-for="(slide, i) in slides" :key="i" :index="i">
+            <p>{{slide}}, {{i}}</p>
+            <img src="https://placehold.it/360x270">
+          </slide>
+        </carousel-3d>
+      </div>
 
-          <b-carousel
-            id="carousel-1"
-            v-model="slide"
-            :interval="10000"
-            controls
-            indicators
-            background="#ababab"
-            img-width="10"
-            img-height="15"
-            style="text-shadow: 1px 1px 2px #333;"
-            @sliding-start="onSlideStart"
-            @sliding-end="onSlideEnd"
-          >
-            <b-carousel-slide
-              v-for="favoriteMovie in myFavoriteMovies" 
-              :key="favoriteMovie.id"
-              :img-src="`https://image.tmdb.org/t/p/original${favoriteMovie.poster_path}`"
-            ></b-carousel-slide>
-            
-          </b-carousel>
-          <p class="mt-4">
-            Slide #: {{ slide }}<br>
-            Sliding: {{ sliding }}
-          </p>
-        </b-col>
-      </b-row>
-      
-    </div>
   </div>
 </template>
 
 <script>
-// import carousel from 'vue-owl-carousel'
-import Vue from 'vue'
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import Vue from 'vue';
 
-// Import Bootstrap an BootstrapVue CSS files (order is important)
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-
-// Make BootstrapVue available throughout your project
-Vue.use(BootstrapVue)
-// Optionally install the BootstrapVue icon components plugin
-Vue.use(IconsPlugin)
+import { Carousel3d, Slide } from 'vue-carousel-3d';
+Vue.use(Carousel3d);
 
 export default {
   name:'MyMovieList',
   components: { 
-    // carousel
+    Carousel3d,
+    Slide,
   },
   props: {
     myFavoriteMovies:{
@@ -84,17 +39,8 @@ export default {
     }  
   },
   data() {
-      return {
-        slide: 0,
-        sliding: null
-      }
-    },
-  methods: {
-    onSlideStart() {
-      this.sliding = true
-    },
-    onSlideEnd() {
-      this.sliding = false
+    return {
+      slides:7
     }
   },
   created () {
