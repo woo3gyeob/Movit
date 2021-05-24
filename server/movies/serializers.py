@@ -12,9 +12,15 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = ('id','content', 'rating')
 
-class MovieSerializer(serializers.ModelSerializer):
+class MovieDetailSerializer(serializers.ModelSerializer):
     comment_set = CommentSerializer(read_only=True, many=True)
 
     class Meta:
         model = Movie
         fields = ('id','genres','title','overview','release_date','vote_average','poster_path','like','comment_set',)
+
+class MovieSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Movie
+        fields = ('id','poster_path',)

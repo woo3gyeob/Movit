@@ -44,7 +44,7 @@ def create(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['PUT'])
+@api_view(['GET','PUT'])
 @authentication_classes([JSONWebTokenAuthentication])
 @permission_classes([IsAuthenticated])
 def update(request, review_pk):
@@ -57,6 +57,10 @@ def update(request, review_pk):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
+
+    elif request.method == 'GET':
+        serializer = ReviewSerializer(review)
+        return Response(serializer.data)
 
 @api_view(['DELETE'])
 @authentication_classes([JSONWebTokenAuthentication])

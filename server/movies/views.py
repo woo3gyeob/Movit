@@ -7,7 +7,7 @@ from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
-from .serializers import CommentSerializer, MovieSerializer
+from .serializers import CommentSerializer, MovieSerializer, MovieDetailSerializer
 from .models import Movie, Comment
 from random import sample
 
@@ -46,7 +46,7 @@ def MovieRecommend(request):
 @permission_classes([IsAuthenticated])
 def detail(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
-    serializer = MovieSerializer(movie)
+    serializer = MovieDetailSerializer(movie)
     return Response(serializer.data)
 
 @api_view(['POST'])
@@ -58,7 +58,7 @@ def like(request, movie_pk):
         movie.like.remove(request.user)
     else:
         movie.like.add(request.user)
-    serializer = MovieSerializer(movie)
+    serializer = MovieDetailSerializer(movie)
     return Response(serializer.data)
 
 @api_view(['POST'])
