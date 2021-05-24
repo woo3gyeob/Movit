@@ -62,6 +62,19 @@ export default {
           alert('작성하신 글이 아닙니다.')
         })
     },
+    updateForm: function () {
+      axios({
+        method:'get',
+        url: `http://127.0.0.1:8000/community/update/${this.$route.params.reviewId}/`,
+        headers: this.setToken(),
+      })
+        .then(() =>{
+          
+        })
+        .catch((err) => {
+          alert(err)
+        })
+    },
     updateReviewDetail: function () {
       axios({
         method:'put',
@@ -69,6 +82,7 @@ export default {
         headers: this.setToken(),
       })
         .then(() =>{
+          
         })
         .catch((err) => {
           alert(err)
