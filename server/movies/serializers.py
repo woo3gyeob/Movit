@@ -7,10 +7,11 @@ class GenreSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CommentSerializer(serializers.ModelSerializer):
-
+    
     class Meta:
         model = Comment
-        fields = ('id','content', 'rating')
+        fields = ('id','content', 'rating', 'user',)
+        read_only_fields = ('user',)
 
 class MovieDetailSerializer(serializers.ModelSerializer):
     comment_set = CommentSerializer(read_only=True, many=True)
@@ -18,6 +19,7 @@ class MovieDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
         fields = ('id','genres','title','overview','release_date','vote_average','poster_path','like','comment_set',)
+
 
 class MovieSerializer(serializers.ModelSerializer):
 

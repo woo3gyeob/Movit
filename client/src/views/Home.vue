@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     <div class="d-flex flex-row">
-      <MovieCard v-for="movie in movies" :key="movie.id" :movie="movie"/>
+      <MovieCard v-for="movie in movies" :key="movie.id" :moviePoster="movie"/>
     </div>
     <div class="d-flex flex-row">
-      <MovieCard v-for="recomMovie in recommendedMovies" :key="recomMovie.id" :movie="recomMovie"/>
+      <MovieCard v-for="recomMovie in recommendedMovies" :key="recomMovie.id" :moviePoster="recomMovie"/>
     </div>
  </div>
 </template>
@@ -33,7 +33,7 @@ export default {
       }
       return config
     },
-    getMovies: function () {
+    getMoviePoster: function () {
       axios({
         method:'get',
         url: 'http://127.0.0.1:8000/movies/',
@@ -46,7 +46,7 @@ export default {
           console.log(err)
         })
     },
-    getRecommendedMovies: function () {
+    getRecommendedMoviePoster: function () {
       axios({
         method:'get',
         url: 'http://127.0.0.1:8000/movies/recommend/',
@@ -61,8 +61,8 @@ export default {
     },
   },
   created() {
-    this.getMovies()
-    this.getRecommendedMovies()
+    this.getMoviePoster()
+    this.getRecommendedMoviePoster()
   }
 
 }
