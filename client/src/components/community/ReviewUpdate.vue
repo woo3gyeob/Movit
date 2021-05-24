@@ -1,21 +1,18 @@
 <template>
   <div>
-    <div>
-      <div class="mb-3">
+     <div class="mb-3 row">
         <label for="title" class="form-label">제목</label>
         <input v-model="review.title" placeholder="제목을 입력해주세요." type="text" class="form-control" id="title" >
       </div>
-      <div class="mb-3">
+      <div class="mb-3 row">
         <label for="content" class="form-label">내용</label>
         <textarea 
           v-model="review.content" 
           placeholder="내용을 입력해 주세요"
           class="form-control" id="content" rows="3"></textarea>
       </div>
-      <br>
-      <button @click="uploadReview">저장</button>&nbsp;
-      <button @click="cancle">취소</button>
-    </div>
+    <button @click="updateReviewDetail">저장</button>&nbsp;
+    <button @click="cancle">취소</button>
   </div>
 </template>
 
@@ -23,7 +20,7 @@
 import axios from 'axios'
 
 export default {
-  name:'ReviewForm',
+  name:'ReviewUpdate',
   data (){
     return{
       review : {
@@ -40,21 +37,18 @@ export default {
       }
       return config
     },
-    uploadReview () {
+    updateReviewDetail: function () {
       axios({
-        method: 'post',
-        url: 'http://127.0.0.1:8000/community/create/',
+        method:'put',
+        url: `http://127.0.0.1:8000/community/update/${this.$route.params.reviewId}/`,
         data: this.review,
         headers: this.setToken(),
       })
-        .then(res => {
-          console.log(res)
-          this.$router.push({
-            path:'/community'
-          })
+        .then(() =>{
+          this.$router.push({name:'Community'})
         })
-        .catch(err => {
-          console.log(err)
+        .catch((err) => {
+          alert(err)
         })
     },
     cancle () {
@@ -62,6 +56,20 @@ export default {
         path:'/community'
       })
     }
+  },
+  created () {
+    axios({
+      method:'get',
+      url: `http://127.0.0.1:8000/community/update/${this.$route.params.reviewId}/`,
+      headers: this.setToken(),
+    })
+      .then((res) =>{
+        this.review.content = res.data.content
+        this.review.title = res.data.title
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 }
 </script>

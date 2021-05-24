@@ -2,7 +2,7 @@
   <div class="container">
     <h2 class="mx-5 px-5">내가 좋아한 영화들</h2>
       <div>
-        <carousel-3d :disable3d="true" :space="365" :clickable="false" :controls-visible="true">
+        <carousel-3d :disable3d="true" :space="400" :clickable="false" :controls-visible="true">
           <slide v-for="(favoriteMovie, i) in myFavoriteMovies" :key="favoriteMovie.id" :index="i">
             <img :src="`https://image.tmdb.org/t/p/original${favoriteMovie.poster_path}`" alt="poster">
           </slide>

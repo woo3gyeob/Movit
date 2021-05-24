@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     <div class="d-flex flex-row">
-      <MovieCard v-for="movie in movies" :key="movie.id" :moviePoster="movie"/>
+      <MovieCard v-for="movie in movies" :key="movie.id" :moviePoster="movie" :currentUserId="currentUserId"/>
     </div>
     <div class="d-flex flex-row">
-      <MovieCard v-for="recomMovie in recommendedMovies" :key="recomMovie.id" :moviePoster="recomMovie"/>
+      <MovieCard v-for="recomMovie in recommendedMovies" :key="recomMovie.id" :moviePoster="recomMovie" :currentUserId="currentUserId"/>
     </div>
  </div>
 </template>
@@ -18,6 +18,11 @@ export default {
   name: 'Home',
   components:{
     MovieCard,
+  },
+  props:{
+    currentUserId: {
+      type: Number,
+    }
   },
   data () {
     return {

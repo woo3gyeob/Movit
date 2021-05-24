@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Profile from '../views/Profile.vue'
 import Community from '../views/Community.vue'
 import ReviewForm from '@/components/community/ReviewForm.vue'
+import ReviewUpdate from '@/components/community/ReviewUpdate.vue'
 import ReviewListDetail from '@/components/community/ReviewListDetail.vue'
 import Login from '../views/accounts/Login.vue'
 import Signup from '../views/accounts/Signup.vue'
@@ -30,6 +31,11 @@ const routes = [
     path: '/community/create',
     name: 'ReviewForm',
     component: ReviewForm
+  },
+  {
+    path: '/community/update/:reviewId',
+    name: 'ReviewUpdate',
+    component: ReviewUpdate
   },
   {
     path: '/community/:reviewId',

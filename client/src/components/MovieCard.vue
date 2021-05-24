@@ -45,8 +45,8 @@
               <i v-if="comment.rating < 10" class="far fa-star"></i> 
               <i v-else class="fas fa-star"></i>
             </span>
-            <!-- 내 댓글인 경우에만 보이도록 하고 싶음-->
-            <button @click="deleteMovieComment(comment.id)">삭제</button>
+            <!-- 내 댓글인 경우에만 보이도록 하고 싶음 아직 구현 안되었음-->
+            <button v-show="comment.user = currentUserId" @click="deleteMovieComment(comment.id)">삭제</button>
           </span>
             
           </ul>
@@ -85,6 +85,7 @@
 import axios from 'axios'
 import MovieCardDetail from '@/components/MovieCardDetail'
 
+
 export default {
   name: 'MovieCard',
   components:{
@@ -93,7 +94,10 @@ export default {
   props:{
     moviePoster:{
       type: Object,
-    } 
+    },
+    currentUserId:{
+      type:Number,
+    }
   },
   data () {
     return {
@@ -103,9 +107,6 @@ export default {
       score:0,
       movie: {},
     }
-  },
-  computed:{
-
   },
   methods:{
     setToken: function () {
@@ -127,8 +128,11 @@ export default {
         })
           .then(res => {
             this.movie = res.data
-
-            console.log(res)
+            for (var i=0; i < this.movie.like.length; i++) {
+              if ((this.currentUserId) == this.movie.like[i]) {
+                this.isLiked = true
+            }
+            }
           })
           .catch(err => { 
             console.log(err)
@@ -175,7 +179,6 @@ export default {
       })
         .then(() =>{
           this.isLiked = !this.isLiked
-          console.log(this.isLiked)
         })
         .catch(err =>{
           console.log(err)
@@ -185,6 +188,8 @@ export default {
       this.score = num
     },
   },
+  created () {
+  }
 }
 </script>
 

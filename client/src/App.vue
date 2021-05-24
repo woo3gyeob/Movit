@@ -28,21 +28,28 @@
     </div>
     <router-view 
       @login="login"
+      :currentUserId="currentUserId"
     />
   </div>
 </template>
 
 <script>
+import jwt_decode from "jwt-decode"
 
 export default {
   name: 'App',
   data: function () {
     return {
       isLogin: false,
-      currentUser:'',
+      currentUserId:'',
     }
   },
   methods: {
+    getUser() {
+      const token = localStorage.getItem('jwt')
+      const decoded = jwt_decode(token)
+      this.currentUserId = Number(decoded.user_id)
+    },
     login: function (username) {
       this.isLogin = !this.isLogin
       this.currentUser = username
@@ -56,8 +63,9 @@ export default {
   created () {
     const token = localStorage.getItem('jwt')
     if (token) {
-      this.isLogin= true
+      this.isLogin = true
     }
+    this.getUser()
   },
 
 }

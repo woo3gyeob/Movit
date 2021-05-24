@@ -42,8 +42,7 @@ export default {
           alert(JSON.stringify(err.response.data))
           console.log(err)
         })
-      
     }
-  }
+  },
 }
 </script>
