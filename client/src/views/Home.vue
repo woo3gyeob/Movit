@@ -1,10 +1,10 @@
 <template>
   <div class="home">
-    <div class="d-flex flex-row">
-      <MovieCard v-for="movie in movies" :key="movie.id" :moviePoster="movie"/>
+    <div>
+      <MovieCard :moviePosters="movies"/>
     </div>
-    <div class="d-flex flex-row">
-      <MovieCard v-for="recomMovie in recommendedMovies" :key="recomMovie.id" :moviePoster="recomMovie"/>
+    <div>
+      <MovieCard v-for="movie in movies" :key="movie.id" :moviePoster="movie"/>
     </div>
  </div>
 </template>
@@ -69,5 +69,8 @@ export default {
 </script>
 
 <style>
-
+  .home {
+    background-image: url('../data/darkcinema.jpg');
+    background-color: black;
+  }
 </style>

@@ -1,9 +1,21 @@
 <template>
   <div>
-    <img 
-      @click="imgClicked"   
-      :src="`https://image.tmdb.org/t/p/original${moviePoster.poster_path}`" 
-      width="250px" alt="image">
+    <div>
+      <p id="movPoster">{{moviePosters }}</p>
+      <h2 class="mx-5 px-5 font_style">오늘의 Pick</h2>
+      <carousel-3d :autoplay="true" :autoplay-timeout="3000" :display="11" :width="400" :height="600">
+        <slide v-for="(moviePoster, i) in moviePosters" :key="i" :index="i">
+          <img 
+            @click="imgClicked"
+            :src="`https://image.tmdb.org/t/p/original${moviePoster.poster_path}`" 
+            alt="image">
+        </slide>
+      </carousel-3d>
+    </div>
+    <div>
+      <h2>회원님을 위한 추천영화</h2>
+    </div>
+    
 
     <MovieCardDetail v-if="isShowed" @close-modal="isShowed=false">
       <div slot="body">
@@ -84,16 +96,25 @@
 <script>
 import axios from 'axios'
 import MovieCardDetail from '@/components/MovieCardDetail'
+import Vue from 'vue';
+
+import { Carousel3d, Slide } from 'vue-carousel-3d';
+Vue.use(Carousel3d);
 
 export default {
   name: 'MovieCard',
   components:{
-    MovieCardDetail
+    MovieCardDetail,
+    Carousel3d,
+    Slide,
   },
   props:{
+    moviePosters:{
+      type: Array,
+    },
     moviePoster:{
       type: Object,
-    } 
+    },
   },
   data () {
     return {
@@ -199,6 +220,10 @@ export default {
   .big-star {
     font-size:2vh;
   }
-
-
+  #movPoster {
+    color: black;
+  }
+  .font_style {
+    color: white;
+  }
 </style>
