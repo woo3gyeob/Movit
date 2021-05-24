@@ -16,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'password')
+        fields = ('id','username', 'password')
 
 class UserProfileSerializer(serializers.ModelSerializer):
     review_comment_user = CommentSerializer(many=True, read_only=True)
