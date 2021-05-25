@@ -10,6 +10,7 @@
       <input type="password" id="password" v-model="credentials.password">
     </div>
     <button @click="login">로그인</button>
+    <button @click="$router.push({name:'Signup'})">회원가입</button>
   </div>
 </template>
 

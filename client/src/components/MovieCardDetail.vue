@@ -1,6 +1,6 @@
 <template>
   <transition name="modal">
-    <div class="modal-mask">
+    <div class="modal-mask ">
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-body">
@@ -10,7 +10,7 @@
 
           <div class="modal-footer">
             <slot name="footer">
-              <button class="modal-default-button" @click="$emit('close-modal')">
+              <button class="btn" @click="$emit('close-modal')">
                 OK
               </button>
             </slot>
@@ -49,6 +49,8 @@ export default {
 }
 
 .modal-container {
+  max-height: 85vh;
+  overflow-y: auto;
   width: 75%;
   margin: 0px auto;
   padding: 20px 30px;
@@ -65,10 +67,10 @@ export default {
 }
 
 .modal-body {
-  margin: 20px 0;
+  margin: 20px;
 }
 
-.modal-default-button {
+.btn {
   float: right;
 }
 

@@ -62,6 +62,9 @@ export default {
     if (token) {
       this.isLogin = true
     }
+    else {
+      this.$router.push({name:'Login'})
+    }
     this.getUser()
   },
 
