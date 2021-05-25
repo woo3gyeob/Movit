@@ -4,7 +4,7 @@
       <MovieCard :moviePosters="movies"/>
     </div>
     <div>
-      <MovieCard v-for="movie in movies" :key="movie.id" :moviePoster="movie"/>
+      <!-- <MovieCard v-for="movie in movies" :key="movie.id" :moviePoster="movie"/> -->
     </div>
  </div>
 </template>
