@@ -58,9 +58,8 @@ export default {
 </script>
 
 <style>
-#app {
+/* #app {
   background-image: url('../data/darkcinema.jpg');
   background-color: black;
-  
-}
+} */
 </style>

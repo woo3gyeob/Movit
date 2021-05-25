@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home pb-5">
     <div>
       <MovieCard :moviePosters="movies" :recommendedMovies="recommendedMovies"/>
     </div>
@@ -71,8 +71,10 @@ export default {
 </script>
 
 <style>
-  .home {
+  .home { 
     background-image: url('../data/darkcinema.jpg');
     background-color: black;
+    background-size: 80% 70%;
+    background-repeat: no-repeat;
   }
 </style>

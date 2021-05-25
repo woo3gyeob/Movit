@@ -30,9 +30,8 @@
                   required
                 ></b-form-input>
               </b-form-group>
-
-              <b-button type="submit" variant="dark">로그인</b-button>
-              <b-button type="reset" variant="warning">Reset</b-button>
+              <button type="submit" class="btn-dark" >로그인</button>
+              <button type="reset" class="btn-warning">Reset</button>
             </b-form>
           </div>
         </div>
@@ -81,7 +80,8 @@ export default {
     }
   },
   methods: {
-    login: function () {
+    login: function (event) {
+      event.preventDefault()
       axios({
         method:'post',
         url: 'http://127.0.0.1:8000/accounts/login/',

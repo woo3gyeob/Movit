@@ -1,28 +1,39 @@
 <template>
   <div id="app">
-    
-      <div>
-        <b-button v-b-toggle.sidebar-right>Toggle Sidebar</b-button>
-        <b-sidebar id="sidebar-right" title="Sidebar" right shadow>
-
-          <div id="nav">
-            <router-link :to="{name:'Home'}">Home</router-link> |
-            <router-link :to="{ name:'Community'}">커뮤니티</router-link> |
-            <span v-if="isLogin">
-              <router-link :to="{ name: 'Profile'}">마이페이지</router-link> |
-              <router-link @click.native="logout" to="#">로그아웃</router-link>
-            </span>
-            <span v-else>
-              <router-link :to="{ name: 'Signup' }">Signup</router-link> |
-              <router-link :to="{ name: 'Login' }">Login</router-link> 
-            </span>
+      <b-button v-b-toggle.sidebar-right variant=""><i class="fas fa-bars "></i></b-button>
+      <b-sidebar id="sidebar-right" bg-variant="dark" text-variant="warning" title="Move it" right shadow>
+        <div id="nav">
+          <div v-if="isLogin">
+            <a href=""></a>
+            <div class="h2 p-3">
+              <router-link class="router-link" :to="{name:'Home'}" >Movies</router-link>
+            </div>
+            <div class="h2 p-3">
+              <router-link class="router-link" :to="{ name:'Community'}">Community</router-link>
+            </div>
+            <div class="h2 p-3">
+              <router-link class="router-link" :to="{ name: 'Profile'}">Profile</router-link>
+            </div>
+            <div class="h2 p-3">
+              <router-link class="router-link" @click.native="logout" to="#">Logout</router-link>
+            </div>
           </div>
-        </b-sidebar>
-      </div>
-    <router-view 
-      @login="login"
-      :currentUserId="currentUserId"
-    />
+          <div v-else>
+            <div class="h2 p-3">
+              <router-link class="router-link" :to="{ name: 'Signup' }">Signup</router-link>
+            </div>
+            <div class="h2 p-3">
+              <router-link class="router-link"   :to="{ name: 'Login' }">Login</router-link> 
+            </div>
+          </div>
+        </div>
+      </b-sidebar>
+    <div class="padding">
+      <router-view 
+        @login="login"
+        :currentUserId="currentUserId"
+      />
+    </div>
   </div>
 </template>
 
@@ -79,7 +90,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+
 }
 
 #nav {
@@ -88,10 +99,23 @@ export default {
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #fdd835;
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: white;
+}
+.btn {
+  color: #fdd835;
+  font-size:3vh;
+}
+.padding {
+  padding:5%;
+}
+a { 
+  text-decoration: none; 
+}
+.router-link {
+  text-decoration: none; 
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-button @click="writeContent">글쓰기</b-button>
+    <button @click="writeContent">글쓰기</button>
     <b-table 
       striped 
       hover
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+
 import axios from 'axios'
 export default {
   name : "ReviewList",
