@@ -12,8 +12,14 @@
         </slide>
       </carousel-3d>
     </div>
+    <br><br><br><br>
     <div>
-      <h2>회원님을 위한 추천영화</h2>
+      <h2 class="mx-5 px-5 font_style">회원님을 위한 추천영화</h2>
+      <carousel-3d :disable3d="true" :space="365" :clickable="false" :controls-visible="true" :width="280" :height="370">
+        <slide v-for="(recommendedMovie, i) in recommendedMovies" :key="recommendedMovie.id" :index="i">
+          <img :src="`https://image.tmdb.org/t/p/original${recommendedMovie.poster_path}`" alt="poster">
+        </slide>
+      </carousel-3d>
     </div>
     
 
@@ -113,8 +119,8 @@ export default {
     moviePosters:{
       type: Array,
     },
-    moviePoster:{
-      type: Object,
+    recommendedMovies:{
+      type: Array,
     },
     currentUserId:{
       type:Number,

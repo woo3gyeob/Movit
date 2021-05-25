@@ -1,10 +1,7 @@
 <template>
   <div class="home">
     <div>
-      <MovieCard :moviePosters="movies"/>
-    </div>
-    <div>
-      <!-- <MovieCard v-for="movie in movies" :key="movie.id" :moviePoster="movie"/> -->
+      <MovieCard :moviePosters="movies" :recommendedMovies="recommendedMovies"/>
     </div>
  </div>
 </template>
