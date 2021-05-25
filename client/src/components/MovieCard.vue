@@ -6,7 +6,7 @@
       <carousel-3d :autoplay="true" :autoplay-timeout="3000" :display="11" :width="400" :height="600">
         <slide v-for="(moviePoster, i) in moviePosters" :key="i" :index="i">
           <img 
-            @click="imgClicked"
+            @click="imgClicked(moviePoster.id)"
             :src="`https://image.tmdb.org/t/p/original${moviePoster.poster_path}`" 
             alt="image">
         </slide>
@@ -58,7 +58,7 @@
               <i v-else class="fas fa-star"></i>
             </span>
             <!-- 내 댓글인 경우에만 보이도록 하고 싶음-->
-            <button @click="deleteMovieComment(comment.id)">삭제</button>
+            <button @click="deleteMovieComment(comment.id, movie.id)">삭제</button>
           </span>
             
           </ul>
@@ -85,7 +85,7 @@
               <i v-else class="fas fa-star"></i>
             </span>
           </span>
-          <button @click="commentCreate">작성</button>
+          <button @click="commentCreate(movie.id)">작성</button>
         </div>
       </div>
     </MovieCardDetail>
@@ -136,14 +136,14 @@ export default {
       }
       return config
     },
-    imgClicked: function () {
+    imgClicked: function (moviePosterId) {
       this.isShowed = !this.isShowed
-      this.getMovieInfo()
+      this.getMovieInfo(moviePosterId)
     },
-    getMovieInfo () {
+    getMovieInfo (moviePosterId) {
       axios({
         method:'get',
-        url: `http://127.0.0.1:8000/movies/${this.moviePoster.id}`,
+        url: `http://127.0.0.1:8000/movies/${moviePosterId}`,
         headers: this.setToken(),
         })
           .then(res => {
@@ -155,19 +155,20 @@ export default {
             console.log(err)
           })
     },
-    commentCreate: function () {
+    commentCreate: function (moviePosterId) {
+      console.log(moviePosterId)
       const commentInfo = {
         content: this.commentInput,
         rating: this.score,
       }
       axios({
         method:'post',
-        url: `http://127.0.0.1:8000/movies/${this.moviePoster.id}/comment/create/`,
+        url: `http://127.0.0.1:8000/movies/${moviePosterId}/comment/create/`,
         data: commentInfo,
         headers: this.setToken()
       })
         .then(()=>{
-          this.getMovieInfo()
+          this.getMovieInfo(moviePosterId)
           this.commentInput = ''
           this.score = 0
         })
@@ -175,14 +176,14 @@ export default {
           console.log(err)
         })
     },
-    deleteMovieComment(commentId) {
+    deleteMovieComment(commentId, moviePosterId) {
       axios({
         method:'delete',
-        url: `http://127.0.0.1:8000/movies/${this.moviePoster.id}/comment/delete/${commentId}`,
+        url: `http://127.0.0.1:8000/movies/${moviePosterId}/comment/delete/${commentId}`,
         headers: this.setToken(),
       })
         .then(() =>{
-          this.getMovieInfo()
+          this.getMovieInfo(moviePosterId)
         })
         .catch(() => {
           alert("작성한 댓글이 아닙니다")
