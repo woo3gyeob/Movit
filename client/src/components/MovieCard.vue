@@ -6,8 +6,8 @@
       <carousel-3d :autoplay="true" :autoplay-timeout="3000" :display="11" :width="400" :height="600">
         <slide v-for="(moviesPoster, i) in moviePosters" :key="i" :index="i">
           <img 
-            @click="imgClicked(moviePoster.id)"
-            :src="`https://image.tmdb.org/t/p/original${moviePoster.poster_path}`" 
+            @click="imgClicked(moviesPoster.id)"
+            :src="`https://image.tmdb.org/t/p/original${moviesPoster.poster_path}`" 
             alt="image">
         </slide>
       </carousel-3d>
