@@ -4,10 +4,10 @@
       <p id="movPoster">{{moviePosters }}</p>
       <h2 class="mx-5 px-5 font_style">오늘의 Pick</h2>
       <carousel-3d :autoplay="true" :autoplay-timeout="3000" :display="11" :width="400" :height="600">
-        <slide v-for="(moviePoster, i) in moviePosters" :key="i" :index="i">
+        <slide v-for="(moviesPoster, i) in moviePosters" :key="i" :index="i">
           <img 
             @click="imgClicked"
-            :src="`https://image.tmdb.org/t/p/original${moviePoster.poster_path}`" 
+            :src="`https://image.tmdb.org/t/p/original${moviesPoster.poster_path}`" 
             alt="image">
         </slide>
       </carousel-3d>
