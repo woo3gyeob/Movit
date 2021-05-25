@@ -9,8 +9,13 @@ import ReviewListDetail from '@/components/community/ReviewListDetail.vue'
 import Login from '../views/accounts/Login.vue'
 import Signup from '../views/accounts/Signup.vue'
 
+import { BButton, BCard, BForm, BFormGroup, BFormInput } from 'bootstrap-vue'
+Vue.component('b-button', BButton)
 Vue.use(VueRouter)
-
+Vue.component('b-card', BCard)
+Vue.component('b-form', BForm)
+Vue.component('b-form-group', BFormGroup)
+Vue.component('b-form-input', BFormInput)
 const routes = [
   {
     path: '/movies',

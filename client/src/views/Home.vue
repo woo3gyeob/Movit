@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <div>
+  <div>
+    <div class="home container">
       <MovieCard :moviePosters="movies" :recommendedMovies="recommendedMovies"/>
     </div>
  </div>
@@ -71,8 +71,5 @@ export default {
 </script>
 
 <style>
-  .home {
-    background-image: url('../data/darkcinema.jpg');
-    background-color: black;
-  }
+  
 </style>

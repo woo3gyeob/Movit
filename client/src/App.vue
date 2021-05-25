@@ -2,7 +2,7 @@
   <div id="app">
     
       <div>
-        <b-button v-b-toggle.sidebar-right>Toggle Sidebar</b-button>
+        <b-button v-b-toggle.sidebar-right>Sidebar</b-button>
         <b-sidebar id="sidebar-right" title="Sidebar" right shadow>
 
           <div id="nav">

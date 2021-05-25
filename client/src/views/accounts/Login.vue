@@ -1,72 +1,58 @@
 <template>
-  <div class="container loginform m-5 p-5">
-    <div class="m-5 p-5">
-      <div class="m-5 p-5">
-        <div class="m-5 p-5 cardstyle">
-          <div class="mx-5 px-5">
-            <h1>Login</h1>
-            <b-form @submit="login" @reset="onReset" v-if="show">
-              <b-form-group
-                id="input-group-1"
-                label="ID:"
-                label-for="input-1"
-                description="Welcome to NamJung-ne Movie"
-              >
-                <b-form-input
-                  id="username" 
-                  v-model="credentials.username"
-                  type="text"
-                  placeholder="Enter ID"
-                  required
-                ></b-form-input>
-              </b-form-group>
-
-              <b-form-group id="input-group-1" label="Password:" label-for="input-2">
-                <b-form-input
-                  id="password"
-                  type="password"
-                  v-model="credentials.password"
-                  placeholder="Enter Password"
-                  required
-                ></b-form-input>
-              </b-form-group>
-
-              <b-button type="submit" variant="dark">로그인</b-button>
-              <b-button type="reset" variant="warning">Reset</b-button>
-            </b-form>
-          </div>
-        </div>
+  <div id="wrapper">
+    <transition name="fade" id="trans">
+      <div id="inside" style="width: 400px;" v-if="isActive">
+        <h5 id="input-group-1">무빗(Movie it!)에 오신 걸 환영합니다!</h5>
+        <b-card id="bcard">
+          <h1>Login</h1>
+          <b-form @submit="login" @reset="onReset" v-if="show">
+            <b-form-group
+              id="input-group-1"
+              label="ID:"
+              label-for="input-1"
+              description="이메일로 로그인 가능합니다"
+            >
+              <b-form-input
+                id="username" 
+                v-model="credentials.username"
+                type="text"
+                placeholder="Enter ID"
+                required
+              ></b-form-input>
+            </b-form-group>
+            <br>
+            
+            <b-form-group id="input-group-1" label="Password:" label-for="input-2">
+              <b-form-input
+                id="password"
+                type="password"
+                v-model="credentials.password"
+                placeholder="Enter Password"
+                required
+              ></b-form-input>
+            </b-form-group>
+            <br>
+            <button type="submit" class="btn btn-dark">로그인</button>
+            &nbsp;
+            <button type="reset" class="btn btn-warning">Reset</button>
+          </b-form>
+        </b-card>
+      </div>
+    </transition>
+    <div id="inside" style="width: 400px;">
+      <div id="transitionTest">
+        <transition name="fade">
+          <img src="@/data/logo.png" alt="Move it!" v-if="!isActive" @mouseover.once="isActive = !isActive" width="400px" height="400px">
+          <!-- <h1 v-if="!isActive" style="color: white;">Movit!</h1> -->
+        </transition>
+        <!-- <button @mousedown="isActive = !isActive" v-if="!isActive">Toggle</button> -->
       </div>
     </div>
   </div>
 </template>
 
-<!--
-<template>
-  <div>
-    <h1>Login</h1>
-    <div>
-      <label for="username">사용자 이름:</label>
-      <input type="text" id="username" v-model="credentials.username">
-    </div>
-    <div>
-      <label for="password">비밀번호:</label>
-      <input type="password" id="password" v-model="credentials.password">
-    </div>
-    <button @click="login">로그인</button>
-  </div>
-</template>
--->
-
 <script>
 import axios from 'axios'
-import Vue from 'vue'
-import { BButton, BCard, BForm, BFormGroup, BFormInput } from 'bootstrap-vue'
-Vue.component('b-button', BButton)
-Vue.component('b-card', BCard)
-Vue.component('b-form', BForm)
-Vue.component('b-form-group', BFormGroup)
-Vue.component('b-form-input', BFormInput)
 
 export default {
   name: 'Login',
@@ -76,11 +62,13 @@ export default {
         username: '',
         password: '',
       },
-      show: true
+      show: true,
+      isActive: false
     }
   },
   methods: {
-    login: function () {
+    login: function (event) {
+      event.preventDefault()
       axios({
         method:'post',
         url: 'http://127.0.0.1:8000/accounts/login/',
@@ -110,17 +98,41 @@ export default {
 </script>
 
 <style>
-  .loginform {
-    height: 3000;
-  }
   #input-group-1 {
     text-align: left;
-    color: yellow;
+    color: #fdd835;
   }
-  .cardstyle{
+  #wrapper {
+    width: 700px;
+    height: 1000px;
+    margin:0 auto;
+  }
+  #inside {
+    position: absolute;
+    top: 35%;
+    left: 35%;
+  }
+  #bcard {
     background-color: black;
-    border-radius: 60px;
-    border-style: solid;
-    border-color: gray
+    border-block-color: white;
+  }
+  h1 {
+    color: white;
+  }
+  #trans {
+    transition-delay: 3s;
+  }
+
+  .fade-enter-active{
+    transition: opacity 3s;
+  }
+  .fade-leave-active {
+    transition: opacity 3s;
+  }
+  .fade-enter{
+    opacity: 0;
+  }
+  .fade-leave-to {
+    opacity: 0;
   }
 </style>

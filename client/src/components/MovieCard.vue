@@ -2,7 +2,7 @@
   <div>
     <div>
       <p id="movPoster">{{moviePosters }}</p>
-      <h2 class="mx-5 px-5 font_style">오늘의 Pick</h2>
+      <h2 class="mx-5 font_style">오늘의 Pick</h2>
       <carousel-3d :autoplay="true" :autoplay-timeout="3000" :display="11" :width="400" :height="600">
         <slide v-for="(moviesPoster, i) in moviePosters" :key="i" :index="i">
           <img 
@@ -14,7 +14,7 @@
     </div>
     <br><br><br><br>
     <div>
-      <h2 class="mx-5 px-5 font_style">회원님을 위한 추천영화</h2>
+      <h2 class="mx-5 font_style">회원님을 위한 추천영화</h2>
       <carousel-3d :disable3d="true" :space="365" :clickable="false" :controls-visible="true" :width="280" :height="370">
         <slide v-for="(recommendedMovie, i) in recommendedMovies" :key="recommendedMovie.id" :index="i">
           <img :src="`https://image.tmdb.org/t/p/original${recommendedMovie.poster_path}`" alt="poster">

@@ -61,6 +61,7 @@ export default {
 #app {
   background-image: url('../data/darkcinema.jpg');
   background-color: black;
-  
+  background-size: 50% 70%;
+  background-repeat: no-repeat;
 }
 </style>

@@ -1,19 +1,52 @@
 <template>
-  <div>
-    <h1>Signup</h1>
-    <div>
-      <label for="username">사용자 이름: </label>
-      <input type="text" id="username" v-model="credentials.username">
+  <div id="wrapper">
+    <div id="inside" style="width: 400px;">
+      <h5 id="input-group-1">무빗(Movie it!)에 오신 걸 환영합니다!</h5>
+      <b-card id="bcard">
+        <h1>Signup</h1>
+        <b-form @submit="signup" @reset="onReset" v-if="show">
+          <b-form-group
+            id="input-group-1"
+            label="ID:"
+            label-for="input-1"
+            description="이메일로 가입 가능합니다"
+          >
+            <b-form-input
+              id="username" 
+              v-model="credentials.username"
+              type="text"
+              placeholder="Enter ID"
+              required
+            ></b-form-input>
+          </b-form-group>
+          <br>
+          
+          <b-form-group id="input-group-1" label="Password:" label-for="input-2">
+            <b-form-input
+              id="password"
+              type="password"
+              v-model="credentials.password"
+              placeholder="Enter Password"
+              required
+            ></b-form-input>
+          </b-form-group>
+          <br>
+          <b-form-group id="input-group-1" label="Check Password:" label-for="input-3">
+            <b-form-input
+              id="passwordConfirmation"
+              type="password"
+              v-model="credentials.passwordConfirmation"
+              placeholder="Check Password"
+              required
+            ></b-form-input>
+          </b-form-group>
+          <br>
+          <button type="submit" class="btn btn-dark">회원가입</button>
+          &nbsp;
+          <button type="reset" class="btn btn-warning">Reset</button>
+        </b-form>
+      </b-card>
     </div>
-    <div>
-      <label for="password">비밀번호: </label>
-      <input type="password" id="password" v-model="credentials.password">
-    </div>
-    <div>
-      <label for="passwordConfirmation">비밀번호 확인: </label>
-      <input type="password" id="passwordConfirmation" v-model="credentials.passwordConfirmation">
-    </div>
-    <button @click="signup(credentials)">회원가입</button>
   </div>
 </template>
 
@@ -30,11 +63,13 @@ export default {
         username: null,
         password: null,
         passwordConfirmation: null,
-      }
+      },
+      show: true,
     }
   },
   methods: {
-    signup: function () {
+    signup: function (event) {
+      event.preventDefault()
       axios({
         method:'post',
         url: 'http://127.0.0.1:8000/accounts/signup/',
@@ -47,7 +82,37 @@ export default {
         .catch(err =>  {
           console.log(err)
         })
-    }
+    },
+    onReset(event) {
+      event.preventDefault()
+      this.credentials.username = ''
+      this.credentials.password = ''
+      this.credentials.passwordConfirmation = ''
+      this.show = false
+      this.$nextTick(() => {
+          this.show = true
+      })
+    },
   }
 }
 </script>
+
+<style scoped>
+  #wrapper {
+    width: 700px;
+    height: 1000px;
+    margin:0 auto;
+  }
+  #inside {
+    position: absolute;
+    top: 35%;
+    left: 35%;
+  }
+  #bcard {
+    background-color: black;
+    border-block-color: white;
+  }
+  h1 {
+    color: white;
+  }
+</style>
