@@ -1,9 +1,21 @@
 <template>
   <div>
-    <img 
-      @click="imgClicked"   
-      :src="`https://image.tmdb.org/t/p/original${moviePoster.poster_path}`" 
-      width="250px" alt="image">
+    <div>
+      <p id="movPoster">{{moviePosters }}</p>
+      <h2 class="mx-5 px-5 font_style">오늘의 Pick</h2>
+      <carousel-3d :autoplay="true" :autoplay-timeout="3000" :display="11" :width="400" :height="600">
+        <slide v-for="(moviesPoster, i) in moviePosters" :key="i" :index="i">
+          <img 
+            @click="imgClicked(moviePoster.id)"
+            :src="`https://image.tmdb.org/t/p/original${moviePoster.poster_path}`" 
+            alt="image">
+        </slide>
+      </carousel-3d>
+    </div>
+    <div>
+      <h2>회원님을 위한 추천영화</h2>
+    </div>
+    
 
     <MovieCardDetail v-if="isShowed" @close-modal="isShowed=false">
       <div slot="body">
@@ -45,8 +57,8 @@
               <i v-if="comment.rating < 10" class="far fa-star"></i> 
               <i v-else class="fas fa-star"></i>
             </span>
-            <!-- 내 댓글인 경우에만 보이도록 하고 싶음 아직 구현 안되었음-->
-            <button v-show="comment.user = currentUserId" @click="deleteMovieComment(comment.id)">삭제</button>
+            <!-- 내 댓글인 경우에만 보이도록 하고 싶음-->
+            <button @click="deleteMovieComment(comment.id, movie.id)">삭제</button>
           </span>
             
           </ul>
@@ -73,7 +85,7 @@
               <i v-else class="fas fa-star"></i>
             </span>
           </span>
-          <button @click="commentCreate">작성</button>
+          <button @click="commentCreate(movie.id)">작성</button>
         </div>
       </div>
     </MovieCardDetail>
@@ -84,14 +96,23 @@
 <script>
 import axios from 'axios'
 import MovieCardDetail from '@/components/MovieCardDetail'
+import Vue from 'vue';
+
+import { Carousel3d, Slide } from 'vue-carousel-3d';
+Vue.use(Carousel3d);
 
 
 export default {
   name: 'MovieCard',
   components:{
-    MovieCardDetail
+    MovieCardDetail,
+    Carousel3d,
+    Slide,
   },
   props:{
+    moviePosters:{
+      type: Array,
+    },
     moviePoster:{
       type: Object,
     },
@@ -116,14 +137,14 @@ export default {
       }
       return config
     },
-    imgClicked: function () {
+    imgClicked: function (moviePosterId) {
       this.isShowed = !this.isShowed
-      this.getMovieInfo()
+      this.getMovieInfo(moviePosterId)
     },
-    getMovieInfo () {
+    getMovieInfo (moviePosterId) {
       axios({
         method:'get',
-        url: `http://127.0.0.1:8000/movies/${this.moviePoster.id}`,
+        url: `http://127.0.0.1:8000/movies/${moviePosterId}`,
         headers: this.setToken(),
         })
           .then(res => {
@@ -138,19 +159,20 @@ export default {
             console.log(err)
           })
     },
-    commentCreate: function () {
+    commentCreate: function (moviePosterId) {
+      console.log(moviePosterId)
       const commentInfo = {
         content: this.commentInput,
         rating: this.score,
       }
       axios({
         method:'post',
-        url: `http://127.0.0.1:8000/movies/${this.moviePoster.id}/comment/create/`,
+        url: `http://127.0.0.1:8000/movies/${moviePosterId}/comment/create/`,
         data: commentInfo,
         headers: this.setToken()
       })
         .then(()=>{
-          this.getMovieInfo()
+          this.getMovieInfo(moviePosterId)
           this.commentInput = ''
           this.score = 0
         })
@@ -158,14 +180,14 @@ export default {
           console.log(err)
         })
     },
-    deleteMovieComment(commentId) {
+    deleteMovieComment(commentId, moviePosterId) {
       axios({
         method:'delete',
-        url: `http://127.0.0.1:8000/movies/${this.moviePoster.id}/comment/delete/${commentId}`,
+        url: `http://127.0.0.1:8000/movies/${moviePosterId}/comment/delete/${commentId}`,
         headers: this.setToken(),
       })
         .then(() =>{
-          this.getMovieInfo()
+          this.getMovieInfo(moviePosterId)
         })
         .catch(() => {
           alert("작성한 댓글이 아닙니다")
@@ -204,6 +226,10 @@ export default {
   .big-star {
     font-size:2vh;
   }
-
-
+  #movPoster {
+    color: black;
+  }
+  .font_style {
+    color: white;
+  }
 </style>

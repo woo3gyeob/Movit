@@ -1,31 +1,24 @@
 <template>
   <div id="app">
-    <!-- <template>
+    
       <div>
-        <b-button v-b-toggle.sidebar-1>Toggle Sidebar</b-button>
-        <b-sidebar id="sidebar-1" title="Sidebar" shadow>
-          <div class="px-3 py-2">
-            <p>
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-              in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-            </p>
-            <b-img src="https://picsum.photos/500/500/?image=54" fluid thumbnail></b-img>
+        <b-button v-b-toggle.sidebar-right>Toggle Sidebar</b-button>
+        <b-sidebar id="sidebar-right" title="Sidebar" right shadow>
+
+          <div id="nav">
+            <router-link :to="{name:'Home'}">Home</router-link> |
+            <router-link :to="{ name:'Community'}">커뮤니티</router-link> |
+            <span v-if="isLogin">
+              <router-link :to="{ name: 'Profile'}">마이페이지</router-link> |
+              <router-link @click.native="logout" to="#">로그아웃</router-link>
+            </span>
+            <span v-else>
+              <router-link :to="{ name: 'Signup' }">Signup</router-link> |
+              <router-link :to="{ name: 'Login' }">Login</router-link> 
+            </span>
           </div>
         </b-sidebar>
       </div>
-    </template> -->
-    <div id="nav">
-      <router-link :to="{name:'Home'}">Home</router-link> |
-      <router-link :to="{ name:'Community'}">커뮤니티</router-link> |
-    <span v-if="isLogin">
-      <router-link :to="{ name: 'Profile'}">마이페이지</router-link> |
-      <router-link @click.native="logout" to="#">로그아웃</router-link>
-    </span>
-    <span v-else>
-      <router-link :to="{ name: 'Signup' }">Signup</router-link> |
-      <router-link :to="{ name: 'Login' }">Login</router-link> 
-    </span>
-    </div>
     <router-view 
       @login="login"
       :currentUserId="currentUserId"
@@ -35,6 +28,10 @@
 
 <script>
 import jwt_decode from "jwt-decode"
+import Vue from 'vue'
+import { BButton, BSidebar } from 'bootstrap-vue'
+Vue.component('b-button', BButton)
+Vue.component('b-sidebar', BSidebar)
 
 export default {
   name: 'App',

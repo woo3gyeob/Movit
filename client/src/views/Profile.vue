@@ -59,6 +59,8 @@ export default {
 
 <style>
 #app {
-  background-color: white;
+  background-image: url('../data/darkcinema.jpg');
+  background-color: black;
+  
 }
 </style>
