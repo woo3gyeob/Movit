@@ -1,4 +1,5 @@
 <template>
+  <div class="background-img">
   <div class="container">
     <br><br>
     <h2 class="mx-5 px-5" style="text-align:left">내가 좋아한 영화들</h2>
@@ -30,6 +31,7 @@
         </carousel-3d>
       </div> -->
 
+  </div>`
   </div>
 </template>
 
@@ -91,4 +93,11 @@ export default {
     text-decoration: none;
     color: white;
   }
+  .background-img { 
+    background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.6)),url('../data/marvel.jpg');
+    background-color: black;
+    height:100vh;
+    background-repeat: no-repeat;
+  }
+  
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="padding ">
     <div>
       <h1>{{username}}'s 마이페이지</h1>
       <br><br>
@@ -123,5 +123,12 @@ export default {
 <style>
   nav .nav-link {
     color: white;
+  }
+  .background-img { 
+    background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.6)),url('/src/data/marvel.jpg');
+    background-color: black;
+    height:100%;
+    border-radius: ;
+    background-repeat: no-repeat;
   }
 </style>

@@ -5,6 +5,7 @@
         :moviePosters="movies" 
         :recommendedMovies="recommendedMovies"
         :currentUserId="currentUserId"
+        :username="username"
         />
     </div>
  </div>
@@ -24,6 +25,9 @@ export default {
     currentUserId: {
       type: Number,
     },
+    username:{
+      type:String,
+    }
   },
   data () {
     return {
@@ -75,10 +79,5 @@ export default {
 </script>
 
 <style>
-  /* .home { 
-    background-image: url('../data/darkcinema.jpg');
-    background-color: black;
-    background-size: 80% 70%;
-    background-repeat: no-repeat;
-  } */
+
 </style>

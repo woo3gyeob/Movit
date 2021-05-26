@@ -49,5 +49,6 @@ export default {
   h2 {
       text-align: left;
       color: black;
-    }
+  }
+
 </style>
