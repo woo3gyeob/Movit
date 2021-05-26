@@ -8,7 +8,7 @@
     <p>{{ review.created_at }}</p>
     <br>
     <hr>
-    <p>{{ review.content }}</p>
+    <p v-html="contentText">{{ review.content }}</p>
     <button @click="goUpdateForm" class="btn btn-warning">수정</button>&nbsp;
     <button @click="deleteReviewDetail" class="btn btn-dark">삭제</button>
     <br><br><hr>
@@ -89,7 +89,11 @@ export default {
   mounted () {
     this.getReviewDetail()
   },
-
+  computed: {
+    contentText: function () {
+      return this.review.content.replace(/\n/g, '<br />');
+    }
+  }
 }
 </script>
 

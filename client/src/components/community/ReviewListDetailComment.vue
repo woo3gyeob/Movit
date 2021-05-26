@@ -1,18 +1,5 @@
 <template>
   <div>
-    <!-- 로그인한 경우에만 댓글입력할 수 있도록 구현하기-->
-    <div for="" class="commentcount">댓글 작성: </div>
-    <b-form-textarea
-      id="textarea"
-      type="text" 
-      v-model.trim="newComment" 
-      @keyup.enter="createComment"
-      placeholder="Enter something..."
-      rows="3"
-      max-rows="6"
-    ></b-form-textarea>
-    <button @click="createComment" class="btn btn-dark btn-sm">등록</button>
-    <br><br><br>
     
     <div class="commentcount">
       {{commentCount}}개의 댓글이 있습니다.
@@ -21,12 +8,62 @@
     <b-list-group>
       <b-list-group-item 
         style="background-color:rgb(29, 26, 26); border-bottom-color:gray" 
-        variant="dark" v-for="comment in commentSet" 
-        :key="comment.id">
+        variant="dark" v-for="(comment, index) in commentSet" 
+        :key="comment.id"
+      >
         <div class="d-flex">
-
-          <img 
-            src="@/data/peusa.jpg" 
+          <img
+            v-if="index === 0"
+            src="@/data/1.jpg"
+            alt="picture" 
+            style="border-radius:50%;" 
+            width="25px" 
+            height="25px">
+          <img
+            v-if="index === 1"
+            src="@/data/2.jpg"
+            alt="picture" 
+            style="border-radius:50%;" 
+            width="25px" 
+            height="25px">
+          <img
+            v-if="index === 2"
+            src="@/data/3.jpg"
+            alt="picture" 
+            style="border-radius:50%;" 
+            width="25px" 
+            height="25px">
+          <img
+            v-if="index === 3"
+            src="@/data/naruto.jpg"
+            alt="picture" 
+            style="border-radius:50%;" 
+            width="25px" 
+            height="25px">
+          <img
+            v-if="index === 4"
+            src="@/data/sasuke.jpg"
+            alt="picture" 
+            style="border-radius:50%;" 
+            width="25px" 
+            height="25px">
+          <img
+            v-if="index === 5"
+            src="@/data/4.jpg"
+            alt="picture" 
+            style="border-radius:50%;" 
+            width="25px" 
+            height="25px">
+          <img
+            v-if="index === 6"
+            src="@/data/5.jpg"
+            alt="picture" 
+            style="border-radius:50%;" 
+            width="25px" 
+            height="25px">
+          <img
+            v-if="index === 7"
+            src="@/data/6.jpg"
             alt="picture" 
             style="border-radius:50%;" 
             width="25px" 
@@ -39,6 +76,20 @@
 
       </b-list-group-item>
     </b-list-group>
+    <!-- 로그인한 경우에만 댓글입력할 수 있도록 구현하기-->
+    <br><br><br>
+    <div for="" class="commentcount">댓글 작성: </div>
+    <b-form-textarea
+      id="textarea"
+      type="text" 
+      v-model.trim="newComment" 
+      @keyup.enter="createComment"
+      placeholder="Enter something..."
+      rows="5"
+      max-rows="6"
+    ></b-form-textarea>
+    <button @click="createComment" class="btn btn-dark btn-sm">등록</button>
+    <br><br><br>
   </div>
 </template>
 
@@ -66,6 +117,14 @@ export default {
   data() {
     return {
       newComment:'',
+      images: [
+        {url: 'data/1.jpg'},
+        {url: 'data/2.jpg'},
+        {url: 'data/3.jpg'},
+        {url: 'data/4.jpg'},
+        {url: 'data/5.jpg'},
+        {url: 'data/6.jpg'},
+      ]
     }
   },
   methods: {
