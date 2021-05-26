@@ -33,6 +33,7 @@
       <router-view 
         @login="login"
         :currentUserId="currentUserId"
+        :username="username"
       />
     </div>
   </div>

@@ -3,7 +3,7 @@
     <b-list-group v-for="myReview in myReviews" :key="myReview.id">
       <b-list-group-item 
         button
-        href="#some-link"
+        @click="goToMyReview(myReview.id)"
         style="background-color:rgb(29, 56, 66); border-bottom-color:gray; color:white; text-align:left" 
         variant="dark"
       >
@@ -31,7 +31,17 @@ export default {
     myReviews:{
       type: Array
     }
-  }
+  },
+  methods: {
+    goToMyReview(review) {
+      this.$router.push({
+        name: 'ReviewListDetail',
+        params: {
+          reviewId: review
+        }
+      })
+    }
+  },
 }
 </script>
 

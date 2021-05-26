@@ -1,17 +1,19 @@
 <template>
   <div class="container">
-
-    <h2 class="mx-5 px-5">내가 좋아한 영화들</h2>
+    <br><br>
+    <h2 class="mx-5 px-5" style="text-align:left">내가 좋아한 영화들</h2>
+      <br>
       <div>
         <carousel-3d 
           :disable3d="true" 
-          :space="365" 
+          :space="150" 
           :clickable="false" 
           :controls-visible="true" 
-          :width="250" 
-          :height="370"
+          :width="120" 
+          :height="175"
           :autoplay="true" 
           :autoplay-timeout="5000"
+          :display="5"
         >
           <slide v-for="(favoriteMovie, i) in myFavoriteMovies" :key="favoriteMovie.id" :index="i">
             <img :src="`https://image.tmdb.org/t/p/original${favoriteMovie.poster_path}`" alt="poster">

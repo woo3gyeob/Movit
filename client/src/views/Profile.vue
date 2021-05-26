@@ -1,21 +1,56 @@
 <template>
   <div class="app">
     <div>
-      <h1>마이페이지</h1>
+      <h1>{{username}}'s 마이페이지</h1>
       <br><br>
-      <b-tabs content-class="mt-3" fill>
-        <b-tab :title="titleText" active title-link-class="tab">
+      <hr>
+      <nav>
+        <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
+          <button 
+            class="nav-link active" 
+            id="nav-home-tab" 
+            data-bs-toggle="tab" 
+            data-bs-target="#nav-home" 
+            type="button" 
+            role="tab"
+            aria-controls="nav-home" 
+            aria-selected="true"
+          >
+            내가 저장한 영화({{myFavoriteMovies.length}})
+          </button>
+          <button 
+            class="nav-link" 
+            id="nav-profile-tab" 
+            data-bs-toggle="tab" 
+            data-bs-target="#nav-profile" 
+            type="button" 
+            role="tab" 
+            aria-controls="nav-profile" 
+            aria-selected="false"
+          >
+            내가 작성한 리뷰({{myReviews.length}})
+          </button>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div 
+          class="tab-pane fade show active" 
+          id="nav-home" 
+          role="tabpanel" 
+          aria-labelledby="nav-home-tab"
+        >
           <MyMovieList :myFavoriteMovies="myFavoriteMovies"/>
-        </b-tab>
-        <b-tab :title="reviewTitleText" title-link-class="tab">
+        </div>
+        <div 
+          class="tab-pane fade" 
+          id="nav-profile" 
+          role="tabpanel" 
+          aria-labelledby="nav-profile-tab"
+        >
           <MyReviews :myReviews="myReviews"/>
-        </b-tab>
-      </b-tabs>
-      
-      <!-- <MyMovieList :myFavoriteMovies="myFavoriteMovies"/>
-      <br>
-      <br>
-      <MyReviews :myReviews="myReviews"/> -->
+        </div>
+      </div>
+      <br><br>
     </div>
   </div>
 </template>
@@ -36,6 +71,11 @@ export default {
   components:{
     MyMovieList,
     MyReviews
+  },
+  props: {
+    username: {
+      type: String,
+    }
   },
   data () {
     return {
@@ -81,7 +121,7 @@ export default {
 </script>
 
 <style>
-.tab {
-  color: red
-}
+  nav .nav-link {
+    color: white;
+  }
 </style>
