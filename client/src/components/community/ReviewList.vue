@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="background-img padding">
     <div class="overflow-auto">
       <h1>Movit Community</h1>
       <br><br>
@@ -109,5 +109,14 @@ export default {
 </script>
 
 <style>
-  
+  .background-img { 
+    background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url('data/lalaland.jpg');
+    background-color: black;
+    height:100vh;
+    background-repeat: no-repeat;
+  }
+  .padding {
+    padding: 5% 15% ;
+  } 
+
 </style>

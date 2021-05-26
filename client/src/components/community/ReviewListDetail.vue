@@ -1,24 +1,25 @@
 <template>
-  <div class="container box p-4">
-    
-    <h3><strong>{{ review.title }}</strong></h3>
-    <br>
-    <h5>작성자 : {{ review.username }}님</h5>
-    <br>
-    <p>{{ review.created_at }}</p>
-    <br>
-    <hr>
-    <p v-html="contentText">{{ review.content }}</p>
-    <button @click="goUpdateForm" class="btn btn-warning">수정</button>&nbsp;
-    <button @click="deleteReviewDetail" class="btn btn-dark">삭제</button>
-    <br><br><hr>
-    <ReviewListDetailComment 
-      :commentCount="review.comment_count"
-      :commentSet="review.comment_set"
-      :reviewId ="review.id"
-      @new-comment="getReviewDetail"
-      @comment-delete="getReviewDetail"
-    />
+  <div class="background-img2 padding2">
+    <div class="container p-5 box" style="overflow:auto">
+        <h3><strong>{{ review.title }}</strong></h3>
+        <br>
+        <h5>작성자 : {{ review.username }}님</h5>
+        <br>
+        <p>{{ review.created_at }}</p>
+        <br>
+        <hr>
+        <p v-html="contentText">{{ review.content }}</p>
+        <button @click="goUpdateForm" class="btn btn-warning">수정</button>&nbsp;
+        <button @click="deleteReviewDetail" class="btn btn-dark">삭제</button>
+        <br><br><hr>
+        <ReviewListDetailComment 
+          :commentCount="review.comment_count"
+          :commentSet="review.comment_set"
+          :reviewId ="review.id"
+          @new-comment="getReviewDetail"
+          @comment-delete="getReviewDetail"
+        />
+    </div>
   </div>
 </template>
 
@@ -86,7 +87,7 @@ export default {
     },
    
   },
-  mounted () {
+  created () {
     this.getReviewDetail()
   },
   computed: {
@@ -111,9 +112,22 @@ export default {
     text-align: left;
   }
   .box {
-    background-color: rgb(17, 37, 37);
+    /* background-color: rgb(70, 70, 70); */
     border-style: solid;
-    border-color: rgb(54, 51, 51);
+    /* border-color: rgb(54, 51, 51); */
     border-radius: 10px;
+    height:95%;
   }
+  .background-img2 { 
+    background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('data/interstella.jpg');
+    background-size:cover;
+    height:100vh;
+    /* background-color: black; */
+    background-repeat: no-repeat;
+  }
+  
+  .padding2 {
+    padding:3% 3% 0% 3% ;
+  }
+
 </style>

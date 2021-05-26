@@ -30,7 +30,7 @@
           </div>
         </div>
       </b-sidebar>
-    <div class="padding">
+    <div class="">
       <router-view 
         @login="login"
         :currentUserId="currentUserId"
@@ -122,11 +122,12 @@ export default {
   font-weight: bold;
 }
 .btn {
+  position:sticky;
   color: #fdd835;
   font-size:3vh;
 }
 /* .padding {
-  padding:5%;
+  padding: 5% 15%;
 } */
 .router-link {
   text-decoration: none; 
