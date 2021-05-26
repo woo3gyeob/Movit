@@ -3,7 +3,7 @@
     <div>
       <!-- <p id="movPoster">{{moviePosters}}</p> -->
       <h2 class="p-5 font_style">오늘의 Pick</h2>
-      <carousel-3d :autoplay="true" :autoplay-timeout="3000" :display="11" :width="400" :height="600">
+      <carousel-3d :autoplay="true" :autoplay-timeout="3000" :display="11" :width="400" height="600">
         <slide v-for="(moviesPoster, i) in moviePosters" :key="i" :index="i">
           <img 
             @click="imgClicked(moviesPoster.id)"
@@ -50,7 +50,7 @@
 
 
         <div class="d-flex p-3">
-          <div class="col-6 p-3">
+          <div class="col-5 p-3">
             <h2 class="p-5 text-center font_style"><strong>영화 한줄평</strong></h2>
               <ul v-for="comment in movie.comment_set" :key="comment.id">
                 <span class="m-2">
@@ -110,11 +110,11 @@
               </div>
           </div>
 
-          <div class="col-6 p-3">
+          <div class="col-7 p-4">
             <div v-if="video">
               <iframe 
-                width="680" 
-                height="520" 
+                width="650" 
+                height="450" 
                 :src="videoUrl" 
                 title="YouTube video player" 
                 frameborder="0" 
@@ -168,6 +168,7 @@ export default {
       score:0,
       movie: {},
       video: [],
+      imgtoTitle: false,
     }
   },
   methods:{
@@ -310,6 +311,17 @@ export default {
   .text-size {
     font-size:2vh;
   }
-
+  .overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #008CBA;
+  }
 
 </style>

@@ -4,7 +4,8 @@
       <MovieCard 
         :moviePosters="movies" 
         :recommendedMovies="recommendedMovies"
-        :currentUserId="currentUserId"/>
+        :currentUserId="currentUserId"
+        />
     </div>
  </div>
 </template>
@@ -22,7 +23,7 @@ export default {
   props:{
     currentUserId: {
       type: Number,
-    }
+    },
   },
   data () {
     return {
@@ -74,10 +75,10 @@ export default {
 </script>
 
 <style>
-  .home { 
+  /* .home { 
     background-image: url('../data/darkcinema.jpg');
     background-color: black;
     background-size: 80% 70%;
     background-repeat: no-repeat;
-  }
+  } */
 </style>

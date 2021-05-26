@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-      <b-button v-b-toggle.sidebar-right variant=""><i class="fas fa-bars "></i></b-button>
+      <span class="h1 btn"><b-button v-b-toggle.sidebar-right class="h1 btn-warning">Movit <i class="fas fa-bars ps-2"></i></b-button></span>
       <b-sidebar id="sidebar-right" bg-variant="dark" text-variant="warning" title="Movit" right shadow>
-        <h4 class="pt-4 username">{{ username }} 님, 환영합니다!</h4>
+        <div v-if="username">
+          <h4 class="pt-4 username">{{ username }} 님, 환영합니다!</h4>
+        </div>
         <div id="nav">
           <div v-if="isLogin">
-            <a href=""></a>
             <div class="h2 p-3">
               <router-link class="router-link" :to="{name:'Home'}" >Movies</router-link>
             </div>
@@ -33,6 +34,7 @@
       <router-view 
         @login="login"
         :currentUserId="currentUserId"
+        :username="username"
       />
     </div>
   </div>
@@ -52,6 +54,7 @@ export default {
       isLogin: false,
       currentUserId:'',
       username:'',
+      hover: false,
     }
   },
   methods: {
@@ -63,22 +66,24 @@ export default {
     },
     login: function () {
       this.isLogin = !this.isLogin
+      this.getUser()
     },
     logout: function () {
       this.isLogin = false
       localStorage.removeItem('jwt')
       this.$router.push({name:"Home"})
+      this.username=''
     }
   },
   created () {
     const token = localStorage.getItem('jwt')
     if (token) {
       this.isLogin = true
+      this.getUser()
     }
     else {
       this.$router.push({name:'Login'})
     }
-    this.getUser()
   },
 
 }
@@ -92,7 +97,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-
 }
 
 #nav {
@@ -100,12 +104,21 @@ export default {
 }
 
 #nav a {
+  color: white;
+  transition:color 0.25s;
+}
+#nav a:hover{
+  color:#FFCA2C;
+  /* background:linear-gradient(to right, #f6d365 0%, #fda085  40%, #f6d365 100%); */
+  background: -webkit-linear-gradient( #EFB633,  #e7e41a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-weight: bold;
-  color: #fdd835;
 }
 
 #nav a.router-link-exact-active {
-  color: white;
+  color: #FFCA2C;
+  font-weight: bold;
 }
 .btn {
   color: #fdd835;
@@ -114,13 +127,11 @@ export default {
 .padding {
   padding:5%;
 }
-a { 
-  text-decoration: none; 
-}
 .router-link {
   text-decoration: none; 
 }
 .username {
-  color:#fdd835;
+  color: white;
 }
+
 </style>
