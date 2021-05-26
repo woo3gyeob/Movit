@@ -122,7 +122,6 @@ export default {
   font-weight: bold;
 }
 .btn {
-  position:sticky;
   color: #fdd835;
   font-size:3vh;
 }

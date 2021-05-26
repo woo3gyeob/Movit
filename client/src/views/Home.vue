@@ -101,7 +101,6 @@ export default {
         headers: this.setToken(),
       })
         .then(res => {
-          console.log('일단 액션은 받음')
           this.adventureMovies = res.data
         })
         .catch(err => { 
@@ -115,7 +114,6 @@ export default {
         headers: this.setToken(),
       })
         .then(res => {
-          console.log('일단 액션은 받음')
           this.animationMovies = res.data
         })
         .catch(err => { 
@@ -129,7 +127,6 @@ export default {
         headers: this.setToken(),
       })
         .then(res => {
-          console.log('일단 액션은 받음')
           this.comedyMovies = res.data
         })
         .catch(err => { 
@@ -143,7 +140,6 @@ export default {
         headers: this.setToken(),
       })
         .then(res => {
-          console.log('일단 액션은 받음')
           this.horrorMovies = res.data
         })
         .catch(err => { 
@@ -157,7 +153,6 @@ export default {
         headers: this.setToken(),
       })
         .then(res => {
-          console.log('일단 액션은 받음')
           this.romanceMovies = res.data
         })
         .catch(err => { 

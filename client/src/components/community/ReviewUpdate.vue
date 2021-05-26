@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="padding background-img4">
     <h1>Movit 리뷰 수정</h1>
     <br><br>
     <div class="mb-3 row">
@@ -84,5 +84,11 @@ export default {
 </script>
 
 <style>
-
+  .background-img4 { 
+    background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('data/harry.jpg');
+    background-size:cover;
+    height:100vh;
+    /* background-color: black; */
+    background-repeat: no-repeat;
+  }
 </style>

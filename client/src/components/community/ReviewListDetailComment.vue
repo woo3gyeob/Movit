@@ -1,6 +1,5 @@
 <template>
   <div>
-    
     <div class="commentcount">
       {{commentCount}}개의 댓글이 있습니다.
     </div>
@@ -88,7 +87,7 @@
       rows="5"
       max-rows="6"
     ></b-form-textarea>
-    <button @click="createComment" class="btn btn-dark btn-sm">등록</button>
+    <button @click="createComment" class="btn btn-dark btn-sm m-3">등록</button>
     <br><br><br>
   </div>
 </template>

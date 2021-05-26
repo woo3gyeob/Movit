@@ -9,8 +9,8 @@
         <br>
         <hr>
         <p v-html="contentText">{{ review.content }}</p>
-        <button @click="goUpdateForm" class="btn btn-warning">수정</button>&nbsp;
-        <button @click="deleteReviewDetail" class="btn btn-dark">삭제</button>
+        <button @click="goUpdateForm" class="btn btn-warning m-1">수정</button>&nbsp;
+        <button @click="deleteReviewDetail" class="btn btn-dark m-1">삭제</button>
         <br><br><hr>
         <ReviewListDetailComment 
           :commentCount="review.comment_count"
