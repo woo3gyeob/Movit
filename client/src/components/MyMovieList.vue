@@ -6,11 +6,11 @@
       <div>
         <carousel-3d 
           :disable3d="true" 
-          :space="150" 
+          :space="220" 
           :clickable="false" 
           :controls-visible="true" 
-          :width="120" 
-          :height="175"
+          :width="200" 
+          :height="270"
           :autoplay="true" 
           :autoplay-timeout="5000"
           :display="5"

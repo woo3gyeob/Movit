@@ -1,9 +1,26 @@
 <template>
   <div>
+    
+    <div>
+      <img 
+        src="@/data/2eternals.jpg"
+        class="home-movie-img"
+        alt="movie-poster"
+        @mouseover="show=true"
+        @mouseleave="show=false"
+      >
+      <div class="home-movie-info" v-if="show">
+        <div class="px-4" style="text-align:left; opacity:0.7; font-size:100px">이터널스</div><br>
+        <h3 class="px-5" style="opacity:0.5; font-size:50px">마블리의 마블 데뷔작!</h3>
+        <h5 class="px-5" style="opacity:0.4; font-size:30px">어벤져스: 엔드게임 이후 인류의 가장 오래된 적 '데비안츠'에 맞서는 이터널스 군단!</h5>
+      </div>
+    </div>
+
+    <hr><br><br>
     <div>
       <!-- <p id="movPoster">{{moviePosters}}</p> -->
-      <h2 class="p-5 font_style">오늘의 Pick</h2>
-      <carousel-3d :autoplay="true" :autoplay-timeout="3000" :display="11" :width="400" height="600">
+      <h2 class="font_style">오늘의 Movit's Pick</h2>
+      <carousel-3d :autoplay="true" :autoplay-timeout="3000" :display="11" :width="400" :height="600">
         <slide v-for="(moviesPoster, i) in moviePosters" :key="i" :index="i">
           <img 
             @click="imgClicked(moviesPoster.id)"
@@ -12,16 +29,96 @@
         </slide>
       </carousel-3d>
     </div>
-    <br><br><br><br>
+    <br><br><br><br><br>
 
     <div>
-      <h2 class="p-5 font_style">회원님을 위한 추천영화</h2>
-      <carousel-3d :disable3d="true" :space="365" :clickable="false" :controls-visible="true" :width="280" :height="370">
+      <h4 class="font_style">{{username}}님을 위한 추천영화</h4><hr>
+      <carousel-3d 
+        :disable3d="true" 
+        :space="180" 
+        :clickable="false" 
+        :controls-visible="true" 
+        :width="150" 
+        :height="210" 
+        :autoplay="true" 
+        :autoplay-timeout="3000"
+      >
         <slide v-for="(recommendedMovie, i) in recommendedMovies" :key="recommendedMovie.id" :index="i">
           <img :src="`https://image.tmdb.org/t/p/original${recommendedMovie.poster_path}`" alt="poster">
         </slide>
       </carousel-3d>
     </div>
+    <hr><br>
+
+    <div>
+      <h4 class="font_style">더위를 날려줄 짜릿한 시원한 액션 시리즈🎬</h4><hr>
+      <carousel-3d 
+        :disable3d="true" 
+        :space="180" 
+        :clickable="false" 
+        :controls-visible="true" 
+        :width="150" 
+        :height="210" 
+        :autoplay="true" 
+        :autoplay-timeout="3000"
+      >
+        <slide v-for="(actionMovie, i) in actionMovies" :key="actionMovie.id" :index="i">
+          <img :src="`https://image.tmdb.org/t/p/original${actionMovie.poster_path}`" alt="poster">
+        </slide>
+      </carousel-3d>
+    </div>
+    <hr><br>
+
+    <div>
+      <h4 class="font_style">코로나로 집콕하는 요즘 떠나고 싶게 만드는 모험 시리즈🛺</h4><hr>
+      <carousel-3d :disable3d="true" :space="180" :clickable="false" :controls-visible="true" :width="150" :height="210" :autoplay="true" :autoplay-timeout="3000">
+        <slide v-for="(adventureMovie, i) in adventureMovies" :key="adventureMovie.id" :index="i">
+          <img :src="`https://image.tmdb.org/t/p/original${adventureMovie.poster_path}`" alt="poster">
+        </slide>
+      </carousel-3d>
+    </div>
+    <hr><br>
+
+    <div>
+      <h4 class="font_style">남녀노소 즐길 수 있는 애니메이션 시리즈👨‍👩‍👧‍👧</h4><hr>
+      <carousel-3d :disable3d="true" :space="180" :clickable="false" :controls-visible="true" :width="150" :height="210" :autoplay="true" :autoplay-timeout="3000">
+        <slide v-for="(animationMovie, i) in animationMovies" :key="animationMovie.id" :index="i">
+          <img :src="`https://image.tmdb.org/t/p/original${animationMovie.poster_path}`" alt="poster">
+        </slide>
+      </carousel-3d>
+    </div>
+    <hr><br>
+
+    <div>
+      <h4 class="font_style">시간 가는 줄 모르고 웃는 코미디 영화😆</h4><hr>
+      <carousel-3d :disable3d="true" :space="180" :clickable="false" :controls-visible="true" :width="150" :height="210" :autoplay="true" :autoplay-timeout="3000">
+        <slide v-for="(comedyMovie, i) in comedyMovies" :key="comedyMovie.id" :index="i">
+          <img :src="`https://image.tmdb.org/t/p/original${comedyMovie.poster_path}`" alt="poster">
+        </slide>
+      </carousel-3d>
+    </div>
+    <hr><br>
+
+    <div>
+      <h4 class="font_style">더운 여름밤을 식혀줄 공포영화 시리즈😱</h4><hr>
+      <carousel-3d :disable3d="true" :space="180" :clickable="false" :controls-visible="true" :width="150" :height="210" :autoplay="true" :autoplay-timeout="3000">
+        <slide v-for="(horrorMovie, i) in horrorMovies" :key="horrorMovie.id" :index="i">
+          <img :src="`https://image.tmdb.org/t/p/original${horrorMovie.poster_path}`" alt="poster">
+        </slide>
+      </carousel-3d>
+    </div>
+    <hr><br>
+
+    <div>
+      <h4 class="font_style">데이트하기 좋은 요즘에 보면 딱 좋은 로맨스💏</h4><hr>
+      <carousel-3d :disable3d="true" :space="180" :clickable="false" :controls-visible="true" :width="150" :height="210" :autoplay="true" :autoplay-timeout="3000">
+        <slide v-for="(romanceMovie, i) in romanceMovies" :key="romanceMovie.id" :index="i">
+          <img :src="`https://image.tmdb.org/t/p/original${romanceMovie.poster_path}`" alt="poster">
+        </slide>
+      </carousel-3d>
+    </div>
+    <hr>
+    <br><br><br><br>
     
 
     <MovieCardDetail v-if="isShowed" @close-modal="isShowed=false">
@@ -158,6 +255,27 @@ export default {
     },
     currentUserId:{
       type:Number,
+    },
+    actionMovies:{
+      type: Array,
+    },
+    adventureMovies:{
+      type: Array,
+    },
+    animationMovies:{
+      type: Array,
+    },
+    comedyMovies:{
+      type: Array,
+    },
+    horrorMovies:{
+      type: Array,
+    },
+    romanceMovies:{
+      type: Array,
+    },
+    username: {
+      type: String,
     }
   },
   data () {
@@ -169,6 +287,7 @@ export default {
       movie: {},
       video: [],
       imgtoTitle: false,
+      show: false,
     }
   },
   methods:{
@@ -311,17 +430,19 @@ export default {
   .text-size {
     font-size:2vh;
   }
-  .overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: .5s ease;
-  background-color: #008CBA;
+  h4 {
+    text-align: left;
   }
-
+  .home-movie-img {
+    width: 100%;
+    height: 100%;
+  }
+  .home-movie-info {
+    position: absolute;
+    top: 700px;
+    width: 1520px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fcfcfc;
+    padding: 3px;
+  }
 </style>

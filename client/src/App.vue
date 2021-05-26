@@ -93,6 +93,7 @@ export default {
 
 <style>
 #app {
+  position: sticky;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -124,9 +125,9 @@ export default {
   color: #fdd835;
   font-size:3vh;
 }
-.padding {
+/* .padding {
   padding:5%;
-}
+} */
 .router-link {
   text-decoration: none; 
 }

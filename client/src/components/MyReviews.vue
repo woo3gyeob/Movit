@@ -1,13 +1,17 @@
 <template>
-  <div>
+  <div class="container">
     <b-list-group v-for="myReview in myReviews" :key="myReview.id">
       <b-list-group-item 
         button
         @click="goToMyReview(myReview.id)"
-        style="background-color:rgb(29, 56, 66); border-bottom-color:gray; color:white; text-align:left" 
+        style="background-color:rgb(29, 56, 66); border-bottom-color:gray; color:white; text-align:left;" 
         variant="dark"
       >
+        
         <h5>{{ myReview.title }}</h5>
+        <p style="font-size:10px; opacity:0.5">{{myReview.created_at}}</p><br>
+      
+        <p>{{myReview.content.slice(0,100)}}...</p>
 
       </b-list-group-item>
     </b-list-group>
@@ -42,6 +46,7 @@ export default {
       })
     }
   },
+
 }
 </script>
 

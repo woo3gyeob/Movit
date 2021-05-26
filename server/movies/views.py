@@ -44,6 +44,62 @@ def MovieRecommend(request):
 @api_view(['GET'])
 @authentication_classes([JSONWebTokenAuthentication])
 @permission_classes([IsAuthenticated])
+def actionMovieRecommend(request):
+    movies = list(Movie.objects.filter(genres=28).all().filter(vote_average__gte=7))
+    movie = sample(movies,15)
+    serializer = MovieSerializer(movie, many=True)
+    return Response(serializer.data)
+    
+@api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def adventureMovieRecommend(request):
+    movies = list(Movie.objects.filter(genres=12).all().filter(vote_average__gte=7))
+    movie = sample(movies,15)
+    serializer = MovieSerializer(movie, many=True)
+    return Response(serializer.data)
+    
+@api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def animationMovieRecommend(request):
+    movies = list(Movie.objects.filter(genres=16).all().filter(vote_average__gte=7))
+    movie = sample(movies,15)
+    serializer = MovieSerializer(movie, many=True)
+    return Response(serializer.data)
+    
+@api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def comedyMovieRecommend(request):
+    movies = list(Movie.objects.filter(genres=35).all().filter(vote_average__gte=7))
+    movie = sample(movies,15)
+    serializer = MovieSerializer(movie, many=True)
+    return Response(serializer.data)
+    
+@api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def horrorMovieRecommend(request):
+    movies = list(Movie.objects.filter(genres=27).all().filter(vote_average__gte=7))
+    movie = sample(movies,15)
+    serializer = MovieSerializer(movie, many=True)
+    return Response(serializer.data)
+    
+@api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def romanceMovieRecommend(request):
+    movies = list(Movie.objects.filter(genres=10749).all().filter(vote_average__gte=7))
+    movie = sample(movies,15)
+    serializer = MovieSerializer(movie, many=True)
+    return Response(serializer.data)
+    
+
+    
+@api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def detail(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     serializer = MovieDetailSerializer(movie)
