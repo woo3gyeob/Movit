@@ -135,3 +135,7 @@ AUTH_USER_MODEL = 'accounts.User'
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
 }
+
+REST_FRAMEWORK = {
+    'DATETIME_FORMAT': "%Y-%m-%d - %H:%M:%S", 
+}

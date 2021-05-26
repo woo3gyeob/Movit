@@ -1,22 +1,32 @@
 <template>
   <div class="container">
+
     <h2 class="mx-5 px-5">내가 좋아한 영화들</h2>
       <div>
-        <carousel-3d :disable3d="true" :space="365" :clickable="false" :controls-visible="true" :width="250" :height="370">
+        <carousel-3d 
+          :disable3d="true" 
+          :space="365" 
+          :clickable="false" 
+          :controls-visible="true" 
+          :width="250" 
+          :height="370"
+          :autoplay="true" 
+          :autoplay-timeout="5000"
+        >
           <slide v-for="(favoriteMovie, i) in myFavoriteMovies" :key="favoriteMovie.id" :index="i">
             <img :src="`https://image.tmdb.org/t/p/original${favoriteMovie.poster_path}`" alt="poster">
           </slide>
         </carousel-3d>
       </div>
       <div v-if="!myFavoriteMovies.length">"좋아요한 영화가 없습니다."</div>
-      <div id="example">
+      <!-- <div id="example">
         <carousel-3d :autoplay="true" :autoplay-timeout="5000" :display="3">
           <slide v-for="(slide, i) in slides" :key="i" :index="i">
             <p>{{slide}}, {{i}}</p>
             <img src="https://placehold.it/360x270">
           </slide>
         </carousel-3d>
-      </div>
+      </div> -->
 
   </div>
 </template>

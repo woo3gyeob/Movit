@@ -1,9 +1,17 @@
 <template>
-  <div>
-    <h4>제목: {{ review.title }}</h4>
-    <p>내용: {{ review.content }}</p>
-    <button @click="goUpdateForm">수정</button>&nbsp;
-    <button @click="deleteReviewDetail">삭제</button>
+  <div class="container box p-4">
+    
+    <h3><strong>{{ review.title }}</strong></h3>
+    <br>
+    <h5>작성자 : {{ review.username }}님</h5>
+    <br>
+    <p>{{ review.created_at }}</p>
+    <br>
+    <hr>
+    <p>{{ review.content }}</p>
+    <button @click="goUpdateForm" class="btn btn-warning">수정</button>&nbsp;
+    <button @click="deleteReviewDetail" class="btn btn-dark">삭제</button>
+    <br><br><hr>
     <ReviewListDetailComment 
       :commentCount="review.comment_count"
       :commentSet="review.comment_set"
@@ -86,5 +94,22 @@ export default {
 </script>
 
 <style>
-
+  h3 {
+    color: white;
+    text-align: left;
+  }
+  h5 {
+    color: white;
+    text-align: left;
+  }
+  p {
+    color: white;
+    text-align: left;
+  }
+  .box {
+    background-color: rgb(17, 37, 37);
+    border-style: solid;
+    border-color: rgb(54, 51, 51);
+    border-radius: 10px;
+  }
 </style>

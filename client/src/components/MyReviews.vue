@@ -1,15 +1,30 @@
 <template>
   <div>
-    <h2 class="mx-5 px-4">내가 작성한 리뷰들</h2>
-      <ul v-for="myReview in myReviews" :key="myReview.id" class="shadow">
-        <h4>{{ myReview.title }}</h4>
-        <div>{{ myReview.content }}</div>
-      </ul>
+    <b-list-group v-for="myReview in myReviews" :key="myReview.id">
+      <b-list-group-item 
+        button
+        href="#some-link"
+        style="background-color:rgb(29, 56, 66); border-bottom-color:gray; color:white; text-align:left" 
+        variant="dark"
+      >
+        <h5>{{ myReview.title }}</h5>
+
+      </b-list-group-item>
+    </b-list-group>
+    
+    <!-- <ul v-for="myReview in myReviews" :key="myReview.id" class="shadow">
+      <a href="#"><h4>{{ myReview.title }}</h4></a>
+    </ul> -->
     <div v-if="!myReviews.length">"작성한 리뷰가 없습니다."</div>
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import { BListGroup, BListGroupItem } from 'bootstrap-vue'
+Vue.component('b-list-group', BListGroup)
+Vue.component('b-list-group-item', BListGroupItem)
+
 export default {
   name:'MyReviews',
   props :{
