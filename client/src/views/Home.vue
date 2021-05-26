@@ -1,7 +1,10 @@
 <template>
   <div class="home pb-5">
     <div>
-      <MovieCard :moviePosters="movies" :recommendedMovies="recommendedMovies"/>
+      <MovieCard 
+        :moviePosters="movies" 
+        :recommendedMovies="recommendedMovies"
+        :currentUserId="currentUserId"/>
     </div>
  </div>
 </template>

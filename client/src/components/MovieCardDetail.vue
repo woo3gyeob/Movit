@@ -1,8 +1,8 @@
 <template>
   <transition name="modal">
-    <div class="modal-mask ">
+    <div class="modal-mask">
       <div class="modal-wrapper">
-        <div class="modal-container">
+        <div class="modal-container bg-dark">
           <div class="modal-body">
             <slot name="body">
             </slot>
@@ -10,8 +10,8 @@
 
           <div class="modal-footer">
             <slot name="footer">
-              <button class="btn" @click="$emit('close-modal')">
-                OK
+              <button class="btn btn-warning btn-lg" @click="$emit('close-modal')">
+                확인
               </button>
             </slot>
           </div>

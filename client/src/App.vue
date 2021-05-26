@@ -1,7 +1,8 @@
 <template>
   <div id="app">
       <b-button v-b-toggle.sidebar-right variant=""><i class="fas fa-bars "></i></b-button>
-      <b-sidebar id="sidebar-right" bg-variant="dark" text-variant="warning" title="Move it" right shadow>
+      <b-sidebar id="sidebar-right" bg-variant="dark" text-variant="warning" title="Movit" right shadow>
+        <h4 class="pt-4 username">{{ username }} 님, 환영합니다!</h4>
         <div id="nav">
           <div v-if="isLogin">
             <a href=""></a>
@@ -50,6 +51,7 @@ export default {
     return {
       isLogin: false,
       currentUserId:'',
+      username:'',
     }
   },
   methods: {
@@ -57,10 +59,10 @@ export default {
       const token = localStorage.getItem('jwt')
       const decoded = jwt_decode(token)
       this.currentUserId = Number(decoded.user_id)
+      this.username = decoded.username
     },
-    login: function (username) {
+    login: function () {
       this.isLogin = !this.isLogin
-      this.currentUser = username
     },
     logout: function () {
       this.isLogin = false
@@ -117,5 +119,8 @@ a {
 }
 .router-link {
   text-decoration: none; 
+}
+.username {
+  color:#fdd835;
 }
 </style>
