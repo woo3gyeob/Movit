@@ -1,10 +1,21 @@
 <template>
   <div class="app">
     <div>
-      <MyMovieList :myFavoriteMovies="myFavoriteMovies"/>
+      <h1>마이페이지</h1>
+      <br><br>
+      <b-tabs content-class="mt-3" fill>
+        <b-tab :title="titleText" active title-link-class="tab">
+          <MyMovieList :myFavoriteMovies="myFavoriteMovies"/>
+        </b-tab>
+        <b-tab :title="reviewTitleText" title-link-class="tab">
+          <MyReviews :myReviews="myReviews"/>
+        </b-tab>
+      </b-tabs>
+      
+      <!-- <MyMovieList :myFavoriteMovies="myFavoriteMovies"/>
       <br>
       <br>
-      <MyReviews :myReviews="myReviews"/>
+      <MyReviews :myReviews="myReviews"/> -->
     </div>
   </div>
 </template>
@@ -14,6 +25,11 @@ import axios from 'axios'
 
 import MyMovieList from '@/components/MyMovieList'
 import MyReviews from '@/components/MyReviews'
+
+import Vue from 'vue'
+import { BTabs, BTab } from 'bootstrap-vue'
+Vue.component('b-tabs', BTabs)
+Vue.component('b-tab', BTab)
 
 export default {
   name: 'Profile',
@@ -52,11 +68,20 @@ export default {
   },
   created () {
     this.getMyInfo()
+  },
+  computed: {
+    titleText () {
+      return "내가 저장한 영화" + "(" + this.myFavoriteMovies.length + "" + ")"
+    },
+    reviewTitleText () {
+      return "내가 작성한 리뷰" + "(" + this.myReviews.length + "" + ")"
+    }
   }
-
 }
 </script>
 
 <style>
-
+.tab {
+  color: red
+}
 </style>

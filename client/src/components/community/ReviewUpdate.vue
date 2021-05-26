@@ -1,18 +1,27 @@
 <template>
   <div>
-     <div class="mb-3 row">
-        <label for="title" class="form-label">제목</label>
-        <input v-model="review.title" placeholder="제목을 입력해주세요." type="text" class="form-control" id="title" >
-      </div>
-      <div class="mb-3 row">
-        <label for="content" class="form-label">내용</label>
-        <textarea 
-          v-model="review.content" 
-          placeholder="내용을 입력해 주세요"
-          class="form-control" id="content" rows="3"></textarea>
-      </div>
-    <button @click="updateReviewDetail">저장</button>&nbsp;
-    <button @click="cancle">취소</button>
+    <h1>Movit 리뷰 수정</h1>
+    <br><br>
+    <div class="mb-3 row">
+      <label for="title" class="form-label" style="text-align:left">제목</label>
+      <input 
+        v-model="review.title" 
+        placeholder="제목을 입력해주세요." 
+        type="text" 
+        class="form-control"
+        style="background-color:rgb(29, 26, 26); color:white; border-color:gray"
+        id="title" >
+    </div>
+    <div class="mb-3 row">
+      <label for="content" class="form-label" style="text-align:left">내용</label>
+      <textarea 
+        v-model="review.content" 
+        placeholder="내용을 입력해 주세요"
+        style="background-color:rgb(29, 26, 26); color:white; border-color:gray"
+        class="form-control" id="content" rows="10"></textarea>
+    </div>
+    <button @click="updateReviewDetail" class="btn btn-dark btn-sm">저장</button>&nbsp;
+    <button @click="cancle" class="btn btn-warning btn-sm">취소</button>
   </div>
 </template>
 

@@ -1,21 +1,54 @@
 <template>
   <div>
-    <div>
+    <!-- 로그인한 경우에만 댓글입력할 수 있도록 구현하기-->
+    <div for="" class="commentcount">댓글 작성: </div>
+    <b-form-textarea
+      id="textarea"
+      type="text" 
+      v-model.trim="newComment" 
+      @keyup.enter="createComment"
+      placeholder="Enter something..."
+      rows="3"
+      max-rows="6"
+    ></b-form-textarea>
+    <button @click="createComment" class="btn btn-dark btn-sm">등록</button>
+    <br><br><br>
+    
+    <div class="commentcount">
       {{commentCount}}개의 댓글이 있습니다.
     </div>
-    <div v-for="comment in commentSet" :key="comment.id">
-      <strong>{{comment.username}}</strong> : {{comment.content}}
-      <button @click="deleteReviewComment(comment.id)">삭제</button>
-    </div>
-    <!-- 로그인한 경우에만 댓글입력할 수 있도록 구현하기-->
-    <label for="">댓글 작성: </label>
-    <input type="text" v-model.trim="newComment" @keyup.enter="createComment">
-    <button @click="createComment">입력</button>
+    <br>
+    <b-list-group>
+      <b-list-group-item 
+        style="background-color:rgb(29, 26, 26); border-bottom-color:gray" 
+        variant="dark" v-for="comment in commentSet" 
+        :key="comment.id">
+        <div class="d-flex">
+
+          <img 
+            src="@/data/peusa.jpg" 
+            alt="picture" 
+            style="border-radius:50%;" 
+            width="25px" 
+            height="25px">
+          &ensp;
+          <p class="indent">&ensp;<strong>{{comment.username}}</strong></p>
+        </div>
+        <p>{{comment.content}}</p>
+        <button @click="deleteReviewComment(comment.id)" class="btn btn-dark btn-sm">삭제</button>
+
+      </b-list-group-item>
+    </b-list-group>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Vue from 'vue'
+import { BFormTextarea, BListGroup, BListGroupItem } from 'bootstrap-vue'
+Vue.component('b-form-textarea', BFormTextarea)
+Vue.component('b-list-group', BListGroup)
+Vue.component('b-list-group-item', BListGroupItem)
 
 export default {
   name:'ReviewListDetailComment',
@@ -81,5 +114,8 @@ export default {
 </script>
 
 <style>
-
+  .commentcount{
+    text-align: left;
+  }
+  p.indent{ padding-left: 0.8em }
 </style>

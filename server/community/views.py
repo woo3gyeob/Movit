@@ -16,7 +16,7 @@ from .models import Comment, Review
 @permission_classes([IsAuthenticated])
 def index(request):
     if request.method == 'GET':
-        reviews = get_list_or_404(Review)
+        reviews = get_list_or_404(Review.objects.order_by('-id'))
         serializer = ReviewSerializer(reviews, many=True)
         return Response(serializer.data)
 
