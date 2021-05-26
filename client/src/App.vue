@@ -3,7 +3,7 @@
       <span class="h1 btn"><b-button v-b-toggle.sidebar-right class="h1 btn-warning">Movit <i class="fas fa-bars ps-2"></i></b-button></span>
       <b-sidebar id="sidebar-right" bg-variant="dark" text-variant="warning" title="Movit" right shadow>
         <div v-if="username">
-          <h4 class="pt-4 username">{{ username }} 님, 환영합니다!</h4>
+          <h4 class="pt-4 username" style="text-align:center">{{ username }} 님, 환영합니다!</h4>
         </div>
         <div id="nav">
           <div v-if="isLogin">

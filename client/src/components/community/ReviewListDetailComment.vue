@@ -6,7 +6,7 @@
     <br>
     <b-list-group>
       <b-list-group-item 
-        style="background-color:rgb(29, 26, 26); border-bottom-color:gray" 
+        style="background-color:rgb(29, 26, 26, 0.3);  border-bottom-color:gray" 
         variant="dark" v-for="(comment, index) in commentSet" 
         :key="comment.id"
       >
