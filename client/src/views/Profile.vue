@@ -128,7 +128,7 @@ export default {
     background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.6)),url('/src/data/marvel.jpg');
     background-color: black;
     height:100%;
-    border-radius: ;
+    border-radius: 1px;
     background-repeat: no-repeat;
   }
 </style>
