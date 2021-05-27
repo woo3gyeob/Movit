@@ -123,7 +123,7 @@ export default {
     background-color: rgba(0,0,0,0.4);
     border-block-color: white;
     background-image: url('movit-logo.png');
-    background-size: 38% 45%;
+    background-size: 38% 42%;
     background-repeat: no-repeat;
     background-position-x: 270px;
     background-position-y: -30px;
