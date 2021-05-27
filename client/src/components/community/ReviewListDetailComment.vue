@@ -60,8 +60,8 @@
             height="35px">
           <img
             v-if="index === 5"
-            src="@/data/4.jpg"
-            alt="picture" 
+            src="@/data/1.jpg"
+            alt="picture"
             style="border-radius:50%;" 
             width="35px" 
             height="35px">

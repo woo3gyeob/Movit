@@ -161,7 +161,7 @@
           <div class="padding-7 text-left">
             <h1 class="pt-3"><strong>{{ movie.title }}</strong></h1>
             <h1>       
-            <span @click="like(movie.id)">
+            <span @click="like">
               &nbsp;
               <div class="d-flex">
                 <h3 class="pe-3" v-if="!isLiked">내 리스트 담기</h3>
@@ -272,7 +272,7 @@ import MovieCardDetail from '@/components/MovieCardDetail'
 import { Carousel3d, Slide } from 'vue-carousel-3d';
 
 const API_URL ='https://www.googleapis.com/youtube/v3/search'
-const API_KEY = 'AIzaSyDtN2S7jrakt5RRC5Frx8yiiUtfFGVKwcI'
+const API_KEY = 'AIzaSyDgmmE3onHWrW303JpQVosulG5n0zGZTXQ'
 
 export default {
   name: 'MovieCard',
@@ -395,10 +395,10 @@ export default {
           alert("작성한 댓글이 아닙니다")
         })     
     },
-    like (moviePosterId) {
+    like () {
       axios({
         method:'post',
-        url: `http://127.0.0.1:8000/movies/${moviePosterId}/like/`,
+        url: `http://127.0.0.1:8000/movies/${this.movie.id}/like/`,
         headers: this.setToken(),
       })
         .then(() =>{

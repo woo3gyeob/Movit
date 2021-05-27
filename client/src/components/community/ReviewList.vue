@@ -17,7 +17,7 @@
       ></b-table>
       <!-- 아직 제대로 구현 안됨(페이지네이션) -->
       <!-- <b-pagination v-model="currentPage" :total-="rows" :per-page="perPage" align="center"></b-pagination> -->
-      <button @click="writeContent" class="btn btn-dark">글쓰기</button>
+      <button @click="writeContent" class="btn btn-warning">글쓰기</button>
       <br><br>
       <b-pagination
         v-model="currentPage"

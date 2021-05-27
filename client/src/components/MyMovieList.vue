@@ -6,7 +6,7 @@
       <div>
         <div class="row mx-5"><hr><br>
           <div class="col-2" v-for="favoriteMovie in myFavoriteMovies" :key="favoriteMovie.id">
-            <div class="card" style="border-color:black">
+            <div class="card mt-3" style="border-color:black">
               <img class="img-fluid imggroup3" :src="`https://image.tmdb.org/t/p/original${favoriteMovie.poster_path}`" alt="poster" style="cursor: pointer;">
             </div>
           </div>
@@ -66,5 +66,8 @@ export default {
   }
   .imggroup3 {
     box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.4), 0 6px 20px 0 rgba(255, 255, 255, 0.2);
+    width: 200px;
+    height: 270px;
+    
   }
 </style>
