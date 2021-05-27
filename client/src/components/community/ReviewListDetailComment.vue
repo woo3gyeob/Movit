@@ -162,8 +162,8 @@ export default {
         .then(() =>{
           this.$emit('comment-delete')
         })
-        .catch((err) => {
-          alert(err)
+        .catch(() => {
+          alert('작성자가 아닙니다')
         })     
     }
   }

@@ -60,7 +60,9 @@
         :autoplay-timeout="3000"
       >
         <slide v-for="(recommendedMovie, i) in recommendedMovies" :key="recommendedMovie.id" :index="i">
-          <img :src="`https://image.tmdb.org/t/p/original${recommendedMovie.poster_path}`" alt="poster">
+          <img 
+            @click="imgClicked(recommendedMovie.id)"
+            :src="`https://image.tmdb.org/t/p/original${recommendedMovie.poster_path}`" alt="poster">
         </slide>
       </carousel-3d>
     </div>
@@ -79,7 +81,9 @@
         :autoplay-timeout="3000"
       >
         <slide v-for="(actionMovie, i) in actionMovies" :key="actionMovie.id" :index="i">
-          <img :src="`https://image.tmdb.org/t/p/original${actionMovie.poster_path}`" alt="poster">
+          <img 
+            @click="imgClicked(actionMovie.id)"
+            :src="`https://image.tmdb.org/t/p/original${actionMovie.poster_path}`" alt="poster">
         </slide>
       </carousel-3d>
     </div>
