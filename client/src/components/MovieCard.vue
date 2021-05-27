@@ -161,7 +161,7 @@
           <div class="padding-7 text-left">
             <h1 class="pt-3"><strong>{{ movie.title }}</strong></h1>
             <h1>       
-            <span @click="like">
+            <span @click="like(movie.id)">
               &nbsp;
               <div class="d-flex">
                 <h3 class="pe-3" v-if="!isLiked">내 리스트 담기</h3>
@@ -395,10 +395,10 @@ export default {
           alert("작성한 댓글이 아닙니다")
         })     
     },
-    like () {
+    like (moviePosterId) {
       axios({
         method:'post',
-        url: `http://127.0.0.1:8000/movies/${this.movie.id}/like/`,
+        url: `http://127.0.0.1:8000/movies/${moviePosterId}/like/`,
         headers: this.setToken(),
       })
         .then(() =>{
