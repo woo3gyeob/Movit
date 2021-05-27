@@ -6,7 +6,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { NavbarPlugin } from 'bootstrap-vue'
 import { BButton } from 'bootstrap-vue'
-
+import Carousel3d from 'vue-carousel-3d';
+Vue.use(Carousel3d);
 
 Vue.component('b-button', BButton)
 Vue.use(NavbarPlugin)

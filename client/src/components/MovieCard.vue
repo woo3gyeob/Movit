@@ -247,10 +247,8 @@
 <script>
 import axios from 'axios'
 import MovieCardDetail from '@/components/MovieCardDetail'
-import Vue from 'vue';
 
 import { Carousel3d, Slide } from 'vue-carousel-3d';
-Vue.use(Carousel3d);
 
 const API_URL ='https://www.googleapis.com/youtube/v3/search'
 const API_KEY = 'AIzaSyDtN2S7jrakt5RRC5Frx8yiiUtfFGVKwcI'
@@ -413,7 +411,8 @@ export default {
     },
   },
   created () {
-
+    console.log(window);
+ 
   },
   computed: {
     videoUrl(){

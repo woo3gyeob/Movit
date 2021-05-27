@@ -71,7 +71,7 @@ export default {
     logout: function () {
       this.isLogin = false
       localStorage.removeItem('jwt')
-      this.$router.push({name:"Home"})
+      this.$router.push({name:"Login"})
       this.username=''
     }
   },
@@ -106,16 +106,18 @@ export default {
 
 #nav a {
   color: white;
-  transition:color 0.25s;
 }
+
 #nav a:hover{
   color:#FFCA2C;
-  /* background:linear-gradient(to right, #f6d365 0%, #fda085  40%, #f6d365 100%); */
-  background: -webkit-linear-gradient( #EFB633,  #e7e41a);
+  background: -webkit-linear-gradient( #ffff02,  #00c3ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  transition: all 1s ease;
   font-weight: bold;
+  transition:color 5s;
 }
+
 
 #nav a.router-link-exact-active {
   color: #FFCA2C;
