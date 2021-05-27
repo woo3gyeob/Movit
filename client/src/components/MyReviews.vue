@@ -11,8 +11,9 @@
             <b-list-group-item 
               button
               @click="goToMyReview(myReview.id)"
-              style="width:1000px; background-color:rgb(31, 35, 39, 0.3); border-bottom-color:gray; color:white; text-align:left;" 
+              style="width:1000px; background-color:rgb(31, 35, 39, 0.6); border-bottom-color:gray; color:white; text-align:left; cursor: pointer;" 
               variant="dark"
+              class="listgroup"
             >
               
               <h5>{{ myReview.title }}</h5>
@@ -77,5 +78,14 @@ export default {
     background-repeat: no-repeat;
     /* object-fit: cover; */
     background-size: cover;
+  }
+  .listgroup:hover {
+    color:white;
+    background: -webkit-linear-gradient( black, gray);
+    -webkit-background-clip: text;
+    /* -webkit-text-fill-color: transparent; */
+    transition: all 1s ease;
+    font-weight: bold;
+    transition:color 5s;
   }
 </style>

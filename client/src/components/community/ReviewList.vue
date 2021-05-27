@@ -13,6 +13,7 @@
         @row-clicked="rowClick"
         dark
         responsive
+        style="cursor: pointer;"
       ></b-table>
       <!-- 아직 제대로 구현 안됨(페이지네이션) -->
       <!-- <b-pagination v-model="currentPage" :total-="rows" :per-page="perPage" align="center"></b-pagination> -->

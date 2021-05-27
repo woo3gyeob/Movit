@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <span class="h1 btn"><b-button v-b-toggle.sidebar-right class="h1 btn-warning">Movit <i class="fas fa-bars ps-2"></i></b-button></span>
+      <span class="h1 btn sidebarlogo"><b-button v-b-toggle.sidebar-right class="h1 btn-warning">Movit <i class="fas fa-bars ps-2"></i></b-button></span>
       <b-sidebar id="sidebar-right" bg-variant="dark" text-variant="warning" title="Movit" right shadow>
         <div v-if="username">
           <h4 class="pt-4 username" style="text-align:center">{{ username }} 님, 환영합니다!</h4>
@@ -99,6 +99,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
+.sidebarlogo {
+  position: fixed;
+  right: 10px;
+}
 
 #nav {
   padding: 30px;
@@ -116,6 +120,15 @@ export default {
   transition: all 1s ease;
   font-weight: bold;
   transition:color 5s;
+  text-shadow:
+    0 0 1px rgb(255, 255, 255),
+    0 0 50px #fff,
+    0 0 10px #ffff02,
+    0 0 20px #ffff02;
+    /* 0 0 80px #ffff02,
+    0 0 90px #ffff02; */
+    /* 0 0 100px #ffff02,
+    0 0 150px #0ff; */
 }
 
 

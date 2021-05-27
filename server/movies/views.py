@@ -17,7 +17,7 @@ from random import sample
 @permission_classes([IsAuthenticated])
 def index(request):
     if request.method == 'GET':
-        movies = get_list_or_404(Movie)
+        movies = list(Movie.objects.filter(vote_average__gte=8).all())
         movies = movies[:15]
         serializer = MovieSerializer(movies, many=True)
         return Response(serializer.data)

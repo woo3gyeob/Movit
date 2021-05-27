@@ -8,25 +8,27 @@
         alt="movie-poster"
         @mouseover="show=true"
         @mouseleave="show=false"
+        style="cursor: pointer;"
       >
       <div class="home-movie-info" v-if="show">
+        <!-- <h3 class="p-4" style="opacity:0.8; font-size:40px; text-align:center">Upcoming! 11월 대개봉</h3> -->
         <div class="d-flex align-items-end">
-          <div class="px-4" style="text-align:left; opacity:0.7; font-size:100px">이터널스</div><br>
+          <div class="px-4" style="text-align:left; font-size:100px">이터널스</div><br>
           <div>
-            <p class="px-4" style="text-align:left; opacity:0.7; font-size:20px">개봉일 : 2021.11.06 (예정)</p>
-            <h5 class="px-4" style="text-align:left; opacity:0.6; font-size:15px">감독 : 클로이 자오</h5>
-            <h5 class="px-4" style="text-align:left; opacity:0.6; font-size:15px">주연 : 안젤리나 졸리, 리차드 매든, 마동석 ...</h5>
+            <p class="px-4" style="text-align:left; font-size:20px">개봉일 : 2021.11.06 (예정)</p>
+            <h5 class="px-4" style="text-align:left; font-size:15px">감독 : 클로이 자오</h5>
+            <h5 class="px-4" style="text-align:left; font-size:15px">주연 : 안젤리나 졸리, 리차드 매든, 마동석 ...</h5>
           </div>
         </div>
         <br><br><br>
-        <h3 class="px-5" style="opacity:0.5; font-size:50px">마블리의 마블 데뷔작!</h3><br>
-        <h5 class="px-5" style="opacity:0.4; font-size:30px">
+        <h3 class="px-5" style="opacity:0.8; font-size:50px">마블리의 마블 데뷔작! 11월 대개봉!</h3><br>
+        <h5 class="px-5" style="opacity:0.8; font-size:30px">
           Marvel Studio의 신작 '이터널스' 
         </h5><br>
-        <h5 class="px-5" style="opacity:0.4; font-size:30px">
+        <h5 class="px-5" style="opacity:0.8; font-size:30px">
           수 천년에 걸쳐 그 모습을 드러내지 않고 살아온 불멸의 히어로들이 '어벤져스: 엔드게임' 이후
         </h5>
-        <h5 class="px-5" style="opacity:0.4; font-size:30px">
+        <h5 class="px-5" style="opacity:0.8; font-size:30px">
           인류의 가장 오래된 적 '데비안츠'에 맞서기 위해 다시 힘을 합치면서 벌어지는 이야기
         </h5>
       </div>
@@ -35,105 +37,112 @@
     <hr><br><br>
     <div>
       <!-- <p id="movPoster">{{moviePosters}}</p> -->
-      <h2 class="font_style">오늘의 Movit's Pick</h2>
+      <h1 class="font_style" style="text-align:left">🌈오늘의 Movit's Pick</h1>
       <carousel-3d :autoplay="true" :autoplay-timeout="3000" :display="11" :width="400" :height="600">
         <slide v-for="(moviesPoster, i) in moviePosters" :key="i" :index="i">
           <img 
             @click="imgClicked(moviesPoster.id)"
-            :src="`https://image.tmdb.org/t/p/original${moviesPoster.poster_path}`" 
-            alt="image">
+            :src="`https://image.tmdb.org/t/p/original${moviesPoster.poster_path}`"
+            alt="image"
+            style="width:100%; height:100%; cursor: pointer;"
+            class="imggroup2"
+          >
         </slide>
       </carousel-3d>
     </div>
     <br><br><br><br><br>
 
     <div>
-      <h4 class="font_style">{{username}}님을 위한 추천영화</h4><hr>
+      <h2 class="font_style">{{username}}님을 위한 추천영화👨‍🎓</h2><hr>
       <carousel-3d 
         :disable3d="true" 
-        :space="180" 
+        :space="230" 
         :clickable="false" 
         :controls-visible="true" 
-        :width="150" 
-        :height="210" 
+        :width="200" 
+        :height="270" 
         :autoplay="true" 
         :autoplay-timeout="3000"
       >
         <slide v-for="(recommendedMovie, i) in recommendedMovies" :key="recommendedMovie.id" :index="i">
           <img 
             @click="imgClicked(recommendedMovie.id)"
-            :src="`https://image.tmdb.org/t/p/original${recommendedMovie.poster_path}`" alt="poster">
+            :src="`https://image.tmdb.org/t/p/original${recommendedMovie.poster_path}`" alt="poster" style="width:100%; height:100%; cursor: pointer;"
+            class="imggroup"
+          >
         </slide>
       </carousel-3d>
     </div>
-    <hr><br>
+    <hr><br><br>
 
     <div>
-      <h4 class="font_style">더위를 날려줄 짜릿한 시원한 액션 시리즈🎬</h4><hr>
+      <h2 class="font_style">더위를 날려줄 짜릿한 액션 시리즈🎬</h2><hr>
       <carousel-3d 
         :disable3d="true" 
-        :space="180" 
+        :space="230" 
         :clickable="false" 
         :controls-visible="true" 
-        :width="150" 
-        :height="210" 
+        :width="200" 
+        :height="270" 
         :autoplay="true" 
         :autoplay-timeout="3000"
       >
         <slide v-for="(actionMovie, i) in actionMovies" :key="actionMovie.id" :index="i">
           <img 
             @click="imgClicked(actionMovie.id)"
-            :src="`https://image.tmdb.org/t/p/original${actionMovie.poster_path}`" alt="poster">
+            :src="`https://image.tmdb.org/t/p/original${actionMovie.poster_path}`" alt="poster" style="width:100%; height:100%; cursor: pointer;"
+            class="imggroup"  
+          >
         </slide>
       </carousel-3d>
     </div>
-    <hr><br>
+    <hr><br><br>
 
     <div>
-      <h4 class="font_style">코로나로 집콕하는 요즘 떠나고 싶게 만드는 모험 시리즈🛺</h4><hr>
-      <carousel-3d :disable3d="true" :space="180" :clickable="false" :controls-visible="true" :width="150" :height="210" :autoplay="true" :autoplay-timeout="3000">
+      <h2 class="font_style">코로나로 집콕하는 요즘 떠나고 싶게 만드는 모험 시리즈🛺</h2><hr>
+      <carousel-3d :disable3d="true" :space="230" :clickable="false" :controls-visible="true" :width="200" :height="270" :autoplay="true" :autoplay-timeout="3000">
         <slide v-for="(adventureMovie, i) in adventureMovies" :key="adventureMovie.id" :index="i">
-          <img :src="`https://image.tmdb.org/t/p/original${adventureMovie.poster_path}`" alt="poster">
+          <img :src="`https://image.tmdb.org/t/p/original${adventureMovie.poster_path}`" alt="poster" style="width:100%; height:100%; cursor: pointer;" class="imggroup">
         </slide>
       </carousel-3d>
     </div>
-    <hr><br>
+    <hr><br><br>
 
     <div>
-      <h4 class="font_style">남녀노소 즐길 수 있는 애니메이션 시리즈👨‍👩‍👧‍👧</h4><hr>
-      <carousel-3d :disable3d="true" :space="180" :clickable="false" :controls-visible="true" :width="150" :height="210" :autoplay="true" :autoplay-timeout="3000">
+      <h2 class="font_style">남녀노소 즐길 수 있는 애니메이션 시리즈👨‍👩‍👧‍👧</h2><hr>
+      <carousel-3d :disable3d="true" :space="230" :clickable="false" :controls-visible="true" :width="200" :height="270" :autoplay="true" :autoplay-timeout="3000">
         <slide v-for="(animationMovie, i) in animationMovies" :key="animationMovie.id" :index="i">
-          <img :src="`https://image.tmdb.org/t/p/original${animationMovie.poster_path}`" alt="poster">
+          <img :src="`https://image.tmdb.org/t/p/original${animationMovie.poster_path}`" alt="poster" style="width:100%; height:100%; cursor: pointer;" class="imggroup">
         </slide>
       </carousel-3d>
     </div>
-    <hr><br>
+    <hr><br><br>
 
     <div>
-      <h4 class="font_style">시간 가는 줄 모르고 웃는 코미디 영화😆</h4><hr>
-      <carousel-3d :disable3d="true" :space="180" :clickable="false" :controls-visible="true" :width="150" :height="210" :autoplay="true" :autoplay-timeout="3000">
+      <h2 class="font_style">시간 가는 줄 모르고 웃는 코미디 영화😆</h2><hr>
+      <carousel-3d :disable3d="true" :space="230" :clickable="false" :controls-visible="true" :width="200" :height="270" :autoplay="true" :autoplay-timeout="3000">
         <slide v-for="(comedyMovie, i) in comedyMovies" :key="comedyMovie.id" :index="i">
-          <img :src="`https://image.tmdb.org/t/p/original${comedyMovie.poster_path}`" alt="poster">
+          <img :src="`https://image.tmdb.org/t/p/original${comedyMovie.poster_path}`" alt="poster" style="width:100%; height:100%; cursor: pointer;" class="imggroup">
         </slide>
       </carousel-3d>
     </div>
-    <hr><br>
+    <hr><br><br>
 
     <div>
-      <h4 class="font_style">더운 여름밤을 식혀줄 공포영화 시리즈😱</h4><hr>
-      <carousel-3d :disable3d="true" :space="180" :clickable="false" :controls-visible="true" :width="150" :height="210" :autoplay="true" :autoplay-timeout="3000">
+      <h2 class="font_style">더운 여름밤을 식혀줄 공포영화 시리즈😱</h2><hr>
+      <carousel-3d :disable3d="true" :space="230" :clickable="false" :controls-visible="true" :width="200" :height="270" :autoplay="true" :autoplay-timeout="3000">
         <slide v-for="(horrorMovie, i) in horrorMovies" :key="horrorMovie.id" :index="i">
-          <img :src="`https://image.tmdb.org/t/p/original${horrorMovie.poster_path}`" alt="poster">
+          <img :src="`https://image.tmdb.org/t/p/original${horrorMovie.poster_path}`" alt="poster" style="width:100%; height:100%; cursor: pointer;" class="imggroup">
         </slide>
       </carousel-3d>
     </div>
-    <hr><br>
+    <hr><br><br>
 
     <div>
-      <h4 class="font_style">데이트하기 좋은 요즘에 보면 딱 좋은 로맨스💏</h4><hr>
-      <carousel-3d :disable3d="true" :space="180" :clickable="false" :controls-visible="true" :width="150" :height="210" :autoplay="true" :autoplay-timeout="3000">
+      <h2 class="font_style">데이트하기 좋은 요즘에 보면 딱 좋은 로맨스💏</h2><hr>
+      <carousel-3d :disable3d="true" :space="230" :clickable="false" :controls-visible="true" :width="200" :height="270" :autoplay="true" :autoplay-timeout="3000">
         <slide v-for="(romanceMovie, i) in romanceMovies" :key="romanceMovie.id" :index="i">
-          <img :src="`https://image.tmdb.org/t/p/original${romanceMovie.poster_path}`" alt="poster">
+          <img :src="`https://image.tmdb.org/t/p/original${romanceMovie.poster_path}`" alt="poster" style="width:100%; height:100%; cursor: pointer;" class="imggroup">
         </slide>
       </carousel-3d>
     </div>
@@ -150,11 +159,17 @@
               width="380px" alt="image">
           </div>
           <div class="padding-7 text-left">
-            <h1 class="pt-3"><strong>{{ movie.title }}</strong>         
+            <h1 class="pt-3"><strong>{{ movie.title }}</strong></h1>
+            <h1>       
             <span @click="like">
               &nbsp;
-              <i v-if="!isLiked" class="far fa-heart text-danger"></i>
-              <i v-else class="fas fa-heart text-danger"></i>
+              <div class="d-flex">
+                <h3 class="pe-3" v-if="!isLiked">내 리스트 담기</h3>
+                <i v-if="!isLiked" class="h2 far fa-heart text-danger"></i>
+              </div>
+              <div class="d-flex">
+                <i v-if="isLiked" class="fas fa-heart text-danger"></i>
+              </div>
             </span>
             </h1>
             <h4 class="pt-1 pb-4">
@@ -172,26 +187,28 @@
               <ul v-for="comment in movie.comment_set" :key="comment.id">
                 <span class="m-2">
                   <span class="h5 m-2">{{comment.content}}</span>
-                  <span class="text-warning" >
-                    <i v-if="comment.rating < 2" class="far fa-star"></i> 
-                    <i v-else class="fas fa-star"></i>
-                  </span>
-                  <span class="text-warning">
-                    <i v-if="comment.rating < 4" class="far fa-star"></i> 
-                    <i v-else class="fas fa-star"></i>
-                  </span>
-                  <span class="text-warning">
-                    <i v-if="comment.rating < 6" class="far fa-star"></i> 
-                    <i v-else class="fas fa-star"></i>
-                  </span>
-                  <span class="text-warning">
-                    <i v-if="comment.rating < 8" class="far fa-star"></i> 
-                    <i v-else class="fas fa-star"></i>
-                  </span>
-                  <span class="text-warning">
-                    <i v-if="comment.rating < 10" class="far fa-star"></i> 
-                    <i v-else class="fas fa-star"></i>
-                  </span>
+                    <span>
+                      <span class="text-warning" >
+                        <i v-if="comment.rating < 2" class="far fa-star"></i> 
+                        <i v-else class="fas fa-star"></i>
+                      </span>
+                      <span class="text-warning">
+                        <i v-if="comment.rating < 4" class="far fa-star"></i> 
+                        <i v-else class="fas fa-star"></i>
+                      </span>
+                      <span class="text-warning">
+                        <i v-if="comment.rating < 6" class="far fa-star"></i> 
+                        <i v-else class="fas fa-star"></i>
+                      </span>
+                      <span class="text-warning">
+                        <i v-if="comment.rating < 8" class="far fa-star"></i> 
+                        <i v-else class="fas fa-star"></i>
+                      </span>
+                      <span class="text-warning">
+                        <i v-if="comment.rating < 10" class="far fa-star"></i> 
+                        <i v-else class="fas fa-star"></i>
+                      </span>
+                    </span>
                   <button class="btn btn-outline-warning btn-sm" @click="deleteMovieComment(comment.id, movie.id)">삭제</button>  
                 </span>
               </ul>
@@ -463,5 +480,16 @@ export default {
     background-color: rgba(0, 0, 0, 0.5);
     color: #fcfcfc;
     padding: 3px;
+  }
+  .imggroup:hover {
+    border-color: white;
+    border-style: solid;
+    border-width: thin;
+    transition-duration:0.1s;
+  }
+  .imggroup2:hover {
+    border-color: white;
+    border-style: solid;
+    transition-duration:0.1s;
   }
 </style>

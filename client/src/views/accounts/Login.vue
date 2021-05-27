@@ -10,7 +10,6 @@
               id="input-group-1"
               label="ID:"
               label-for="input-1"
-              description="이메일로 로그인 가능합니다"
             >
               <b-form-input
                 id="username" 
@@ -18,6 +17,7 @@
                 type="text"
                 placeholder="Enter ID"
                 required
+                class="boxgroup"
               ></b-form-input>
             </b-form-group>
             <br>
@@ -29,7 +29,9 @@
                 v-model="credentials.password"
                 placeholder="Enter Password"
                 required
+                class="boxgroup"
               ></b-form-input>
+              <p class="forgotpassword" style="text-align:right; color:#d8d1b3; cursor:pointer;">forgot password?</p>
             </b-form-group>
             <br>
             <button type="submit" class="btn btn-warning m-1">로그인</button>
@@ -118,7 +120,7 @@ export default {
     left: 40%;
   }
   #bcard {
-    background-color: black;
+    background-color: rgba(0,0,0,0.4);
     border-block-color: white;
     background-image: url('movit-logo.png');
     background-size: 38% 45%;
@@ -130,19 +132,32 @@ export default {
     color: white;
   }
   #trans {
-    transition-delay: 3s;
+    transition-delay: 2s;
   }
 
   .fade-enter-active{
-    transition: opacity 3s;
+    transition: opacity 2s;
   }
   .fade-leave-active {
-    transition: opacity 3s;
+    transition: opacity 2s;
   }
   .fade-enter{
     opacity: 0;
   }
   .fade-leave-to {
     opacity: 0;
+  }
+  .forgotpassword:hover {
+    color:white;
+    background: -webkit-linear-gradient( black, gray);
+    -webkit-background-clip: text;
+    /* -webkit-text-fill-color: transparent; */
+    transition: all 1s ease;
+    font-weight: bold;
+    transition:color 5s;
+    text-decoration: underline;
+  }
+  .boxgroup:hover {
+    box-shadow: 0 0 10px white;
   }
 </style>

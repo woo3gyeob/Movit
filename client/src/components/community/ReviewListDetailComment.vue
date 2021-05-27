@@ -1,82 +1,5 @@
 <template>
   <div>
-    <div class="commentcount">
-      {{commentCount}}개의 댓글이 있습니다.
-    </div>
-    <br>
-    <b-list-group>
-      <b-list-group-item 
-        style="background-color:rgb(29, 26, 26, 0.3);  border-bottom-color:gray" 
-        variant="dark" v-for="(comment, index) in commentSet" 
-        :key="comment.id"
-      >
-        <div class="d-flex">
-          <img
-            v-if="index === 0"
-            src="@/data/1.jpg"
-            alt="picture" 
-            style="border-radius:50%;" 
-            width="25px" 
-            height="25px">
-          <img
-            v-if="index === 1"
-            src="@/data/2.jpg"
-            alt="picture" 
-            style="border-radius:50%;" 
-            width="25px" 
-            height="25px">
-          <img
-            v-if="index === 2"
-            src="@/data/3.jpg"
-            alt="picture" 
-            style="border-radius:50%;" 
-            width="25px" 
-            height="25px">
-          <img
-            v-if="index === 3"
-            src="@/data/naruto.jpg"
-            alt="picture" 
-            style="border-radius:50%;" 
-            width="25px" 
-            height="25px">
-          <img
-            v-if="index === 4"
-            src="@/data/sasuke.jpg"
-            alt="picture" 
-            style="border-radius:50%;" 
-            width="25px" 
-            height="25px">
-          <img
-            v-if="index === 5"
-            src="@/data/4.jpg"
-            alt="picture" 
-            style="border-radius:50%;" 
-            width="25px" 
-            height="25px">
-          <img
-            v-if="index === 6"
-            src="@/data/5.jpg"
-            alt="picture" 
-            style="border-radius:50%;" 
-            width="25px" 
-            height="25px">
-          <img
-            v-if="index === 7"
-            src="@/data/6.jpg"
-            alt="picture" 
-            style="border-radius:50%;" 
-            width="25px" 
-            height="25px">
-          &ensp;
-          <p class="indent">&ensp;<strong>{{comment.username}}</strong></p>
-        </div>
-        <p>{{comment.content}}</p>
-        <button @click="deleteReviewComment(comment.id)" class="btn btn-dark btn-sm">삭제</button>
-
-      </b-list-group-item>
-    </b-list-group>
-    <!-- 로그인한 경우에만 댓글입력할 수 있도록 구현하기-->
-    <br><br><br>
     <div for="" class="commentcount">댓글 작성: </div>
     <b-form-textarea
       id="textarea"
@@ -87,8 +10,86 @@
       rows="5"
       max-rows="6"
     ></b-form-textarea>
-    <button @click="createComment" class="btn btn-dark btn-sm m-3">등록</button>
+    <button @click="createComment" class="btn btn-warning btn-sm m-3">등록</button>
     <br><br><br>
+    <div class="commentcount">
+      {{commentCount}}개의 댓글이 있습니다.
+    </div>
+    <br>
+    <b-list-group>
+      <b-list-group-item 
+        style="background-color:rgb(29, 26, 26, 0.8);  border-bottom-color:gray" 
+        variant="dark" v-for="(comment, index) in commentSet" 
+        :key="comment.id"
+      >
+        <div class="d-flex">
+          <img
+            v-if="index === 0"
+            src="@/data/6.jpg"
+            alt="picture" 
+            style="border-radius:50%;" 
+            width="35px" 
+            height="35px">
+          <img
+            v-if="index === 1"
+            src="@/data/2.jpg"
+            alt="picture" 
+            style="border-radius:50%;" 
+            width="35px" 
+            height="35px">
+          <img
+            v-if="index === 2"
+            src="@/data/3.jpg"
+            alt="picture" 
+            style="border-radius:50%;" 
+            width="35px" 
+            height="35px">
+          <img
+            v-if="index === 3"
+            src="@/data/4.jpg"
+            alt="picture" 
+            style="border-radius:50%;" 
+            width="35px" 
+            height="35px">
+          <img
+            v-if="index === 4"
+            src="@/data/5.jpg"
+            alt="picture" 
+            style="border-radius:50%;" 
+            width="35px" 
+            height="35px">
+          <img
+            v-if="index === 5"
+            src="@/data/4.jpg"
+            alt="picture" 
+            style="border-radius:50%;" 
+            width="35px" 
+            height="35px">
+          <img
+            v-if="index === 6"
+            src="@/data/5.jpg"
+            alt="picture" 
+            style="border-radius:50%;" 
+            width="35px" 
+            height="35px">
+          <img
+            v-if="index === 7"
+            src="@/data/6.jpg"
+            alt="picture" 
+            style="border-radius:50%;" 
+            width="35px" 
+            height="35px">
+          &ensp;
+          <p class="indent" style="font-size:17px">&ensp;<strong>{{comment.username}}</strong></p>
+        </div>
+        <p>{{comment.content}}</p>
+        <button @click="deleteReviewComment(comment.id)" class="btn btn-dark btn-sm">삭제</button>
+
+      </b-list-group-item>
+    </b-list-group>
+    <!-- 로그인한 경우에만 댓글입력할 수 있도록 구현하기-->
+    <br><br><br>
+    
   </div>
 </template>
 

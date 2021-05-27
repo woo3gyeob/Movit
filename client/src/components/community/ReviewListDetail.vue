@@ -112,7 +112,8 @@ export default {
     text-align: left;
   }
   .box {
-    /* background-color: rgb(70, 70, 70); */
+    background-color: rgb(0, 0, 0, 0.4);
+    
     border-style: solid;
     /* border-color: rgb(54, 51, 51); */
     border-radius: 10px;

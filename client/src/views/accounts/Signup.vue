@@ -17,6 +17,7 @@
               type="text"
               placeholder="Enter ID"
               required
+              class="boxgroup"
             ></b-form-input>
           </b-form-group>
           <br>
@@ -28,6 +29,7 @@
               v-model="credentials.password"
               placeholder="Enter Password"
               required
+              class="boxgroup"
             ></b-form-input>
           </b-form-group>
           <br>
@@ -38,6 +40,7 @@
               v-model="credentials.passwordConfirmation"
               placeholder="Check Password"
               required
+              class="boxgroup"
             ></b-form-input>
           </b-form-group>
           <br>
@@ -114,7 +117,7 @@ export default {
     left: 40%;
   }
   #bcard {
-    background-color: black;
+    background-color: rgba(0,0,0,0.4);
     border-block-color: white;
     background-image: url('movit-logo.png');
     background-size: 38% 35%;
@@ -124,5 +127,8 @@ export default {
   }
   h1 {
     color: white;
+  }
+  .boxgroup:hover {
+    box-shadow: 0 0 10px white;
   }
 </style>
