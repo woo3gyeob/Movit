@@ -2,7 +2,7 @@
   <div id="wrapper">
     <transition name="fade" id="trans">
       <div id="inside" style="width: 400px;" v-if="isActive">
-        <h5 id="input-group-1">무빗(Movie it!)에 오신 걸 환영합니다!</h5>
+        <h5 id="input-group-1">무빗(Movit!)에 오신 걸 환영합니다!</h5>
         <b-card id="bcard">
           <h1>Login</h1>
           <b-form @submit="login" @reset="onReset" v-if="show">
@@ -103,18 +103,28 @@ export default {
     color: #fdd835;
   }
   #wrapper {
-    width: 700px;
-    height: 1000px;
+    /* width: 700px;
+    height: 1000px; */
     margin:0 auto;
+    background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.2)),url('spider.jpg');
+    background-color: black;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height:100vh;
   }
   #inside {
     position: absolute;
-    top: 35%;
-    left: 35%;
+    top: 30%;
+    left: 40%;
   }
   #bcard {
     background-color: black;
     border-block-color: white;
+    background-image: url('movit-logo.png');
+    background-size: 38% 45%;
+    background-repeat: no-repeat;
+    background-position-x: 270px;
+    background-position-y: -30px;
   }
   h1 {
     color: white;

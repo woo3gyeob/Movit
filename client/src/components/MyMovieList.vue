@@ -3,9 +3,18 @@
   <div class="container">
     <br><br>
     <h2 class="mx-5 px-5" style="text-align:left">내가 좋아한 영화들</h2>
-      <br>
       <div>
-        <carousel-3d 
+        <div class="row mx-5"><hr><br>
+          <div class="col-2" v-for="favoriteMovie in myFavoriteMovies" :key="favoriteMovie.id">
+            <div class="card" style="border-color:black">
+              <img class="img-fluid" :src="`https://image.tmdb.org/t/p/original${favoriteMovie.poster_path}`" alt="poster">
+            </div>
+          </div>
+          
+        </div>
+
+
+        <!-- <carousel-3d 
           :disable3d="true" 
           :space="220" 
           :clickable="false" 
@@ -19,7 +28,7 @@
           <slide v-for="(favoriteMovie, i) in myFavoriteMovies" :key="favoriteMovie.id" :index="i">
             <img :src="`https://image.tmdb.org/t/p/original${favoriteMovie.poster_path}`" alt="poster">
           </slide>
-        </carousel-3d>
+        </carousel-3d> -->
       </div>
       <div v-if="!myFavoriteMovies.length">"좋아요한 영화가 없습니다."</div>
       <!-- <div id="example">
@@ -37,16 +46,16 @@
 
 
 <script>
-import Vue from 'vue';
+// import Vue from 'vue';
 
-import { Carousel3d, Slide } from 'vue-carousel-3d';
-Vue.use(Carousel3d);
+// import { Carousel3d, Slide } from 'vue-carousel-3d';
+// Vue.use(Carousel3d);
 
 export default {
   name:'MyMovieList',
   components: { 
-    Carousel3d,
-    Slide,
+    // Carousel3d,
+    // Slide,
   },
   props: {
     myFavoriteMovies:{

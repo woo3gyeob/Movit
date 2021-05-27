@@ -10,9 +10,25 @@
         @mouseleave="show=false"
       >
       <div class="home-movie-info" v-if="show">
-        <div class="px-4" style="text-align:left; opacity:0.7; font-size:100px">이터널스</div><br>
-        <h3 class="px-5" style="opacity:0.5; font-size:50px">마블리의 마블 데뷔작!</h3>
-        <h5 class="px-5" style="opacity:0.4; font-size:30px">어벤져스: 엔드게임 이후 인류의 가장 오래된 적 '데비안츠'에 맞서는 이터널스 군단!</h5>
+        <div class="d-flex align-items-end">
+          <div class="px-4" style="text-align:left; opacity:0.7; font-size:100px">이터널스</div><br>
+          <div>
+            <p class="px-4" style="text-align:left; opacity:0.7; font-size:20px">개봉일 : 2021.11.06 (예정)</p>
+            <h5 class="px-4" style="text-align:left; opacity:0.6; font-size:15px">감독 : 클로이 자오</h5>
+            <h5 class="px-4" style="text-align:left; opacity:0.6; font-size:15px">주연 : 안젤리나 졸리, 리차드 매든, 마동석 ...</h5>
+          </div>
+        </div>
+        <br><br><br>
+        <h3 class="px-5" style="opacity:0.5; font-size:50px">마블리의 마블 데뷔작!</h3><br>
+        <h5 class="px-5" style="opacity:0.4; font-size:30px">
+          Marvel Studio의 신작 '이터널스' 
+        </h5><br>
+        <h5 class="px-5" style="opacity:0.4; font-size:30px">
+          수 천년에 걸쳐 그 모습을 드러내지 않고 살아온 불멸의 히어로들이 '어벤져스: 엔드게임' 이후
+        </h5>
+        <h5 class="px-5" style="opacity:0.4; font-size:30px">
+          인류의 가장 오래된 적 '데비안츠'에 맞서기 위해 다시 힘을 합치면서 벌어지는 이야기
+        </h5>
       </div>
     </div>
 
@@ -439,7 +455,7 @@ export default {
   }
   .home-movie-info {
     position: absolute;
-    top: 700px;
+    top: 500px;
     width: 1520px;
     background-color: rgba(0, 0, 0, 0.5);
     color: #fcfcfc;
