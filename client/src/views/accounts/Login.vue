@@ -32,9 +32,9 @@
               ></b-form-input>
             </b-form-group>
             <br>
-            <button type="submit" class="btn btn-dark">로그인</button>
+            <button type="submit" class="btn btn-warning m-1">로그인</button>
             &nbsp;
-            <button type="reset" class="btn btn-warning">Reset</button>
+            <button type="reset" class="btn btn-dark m-1">Reset</button>
           </b-form>
         </b-card>
       </div>
