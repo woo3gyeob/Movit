@@ -1,5 +1,3 @@
-from django.db.models import fields
-from django.db.models.fields.related_descriptors import ManyToManyDescriptor
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from community.serializers import (
@@ -18,6 +16,14 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id','username', 'password')
 
+
+# class ProfileSerializer(serializers.ModelSerializer):
+
+#     class Meta:
+#         model = Profile
+#         fields = ('profileImg',)
+
+
 class UserProfileSerializer(serializers.ModelSerializer):
     review_comment_user = CommentSerializer(many=True, read_only=True)
     comment_count = serializers.IntegerField(
@@ -31,7 +37,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
     )
     liked_review = ReviewSerializer(many=True, read_only=True)
     liked_movie = MovieSerializer(many=True, read_only=True)
-
+    
     class Meta:
         model = User
-        fields = ('username','liked_review','liked_movie','review_comment_user','comment_count','review_set','review_count',)
+        fields = ('liked_review','liked_movie','review_comment_user','comment_count','review_set','review_count','profileImg',)

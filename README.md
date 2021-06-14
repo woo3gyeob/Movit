@@ -3,6 +3,7 @@
 ## 1. 팀원 정보 및 업무 분담 내역
 
 1. 팀원 정보 및 업무 분담내역
+
 - 백엔드 | 정종우
 - 프론트엔드 | 남하은
 
@@ -20,13 +21,23 @@
 
 실제 웹사이트에 비견될 수 있는 완성도를 갖추기 위한 CSS 기능 구현
 
+3d-carousel 활용으로 입체적인 이미지의 영화 포스터 정보 제공
+
 ~~영화 검색 기능~~
 
 <br>
 
 ## 3. 데이터베이스 모델링 ERD
 
-![README%2059d68f1eaed444b4a650f2a590b255a6/Untitled.png](README%2059d68f1eaed444b4a650f2a590b255a6/Untitled.png)
+![README%2059d68f1eaed444b4a650f2a590b255a6/Untitled.png](README.assets/Untitled.png)
+
+<br>
+
+### URL
+
+![image-20210614160249662](README.assets/image-20210614160249662.png)
+
+<br>
 
 <br>
 
@@ -84,6 +95,8 @@ admin 등록
 
 : 회원가입
 
+![image-20210614160345292](README.assets/image-20210614160345292.png)
+
 ```python
 @api_view(['POST'])
 def signup(request):
@@ -108,20 +121,37 @@ def signup(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 ```
 
-:로그인 - jwt 토큰 사용
+<br>
+
+:로그인
+
+- jwt 토큰 사용
+- transition 애니메이션 효과로 로고를 먼저 보여준 후, mouseover시 로그인 폼이 나오도록 구성
+
+![image-20210614160448749](README.assets/image-20210614160448749.png)
 
 ```python
 from rest_framework_jwt.views import obtain_jwt_token
 path('login/', obtain_jwt_token),
 ```
 
-:로그아웃 - vue에서 jwt 토큰 지우도록함
+:로그아웃
+
+- vue에서 jwt 토큰 지우도록함
+- 오른쪽 상단의 사이드바에서 관리
+- 버튼 mouseover시 네온 효과
+
+![image-20210614160617664](README.assets/image-20210614160617664.png)
+
+<br>
 
 ### 영화 추천 기능
 
 : 유저가 좋아요 한 영화 중 가장 빈번한 장르의 영화를 추천함.
 
-유저 좋아요가 없을 경우, 평점이 높은 순으로 보여줌.
+- 유저 좋아요가 없을 경우, 평점이 높은 순으로 보여줌.
+
+![image-20210614160948532](README.assets/image-20210614160948532.png)
 
 ```python
 @api_view(['GET'])
@@ -144,11 +174,16 @@ def MovieRecommend(request):
     return Response(serializer.data)
 ```
 
-### 게시글 조회, 생성, 수정, 삭제
+<br>
 
-Community → [views.py](http://views.py) 참고
+### 영화 상세정보 조회
 
-### 좋아요 기능
+- 영화 포스터 클릭 이벤트 발생 시 영화 상세 정보를 담은 모달을 보여줌
+- 하트를 누르면 내 영화 리스트에 담게 되고 마이페이지에서 좋아한 영화 조회 가능
+- 영화마다 별점과 한 줄평을 남길 수 있음
+- 유튜브 API를 통해 트레일러를 가져와 보여줌
+
+![image-20210614161320306](README.assets/image-20210614161320306.png)
 
 ```python
 @api_view(['POST'])
@@ -164,6 +199,20 @@ def like(request, movie_pk):
     serializer = MovieDetailSerializer(movie)
     return Response(serializer.data)
 ```
+
+<br>
+
+### 게시글 조회, 생성, 수정, 삭제
+
+![image-20210614161504979](README.assets/image-20210614161504979.png)
+
+![image-20210614161425502](README.assets/image-20210614161425502.png)
+
+![image-20210614161755264](README.assets/image-20210614161755264.png)
+
+Community → [views.py](http://views.py) 참고
+
+<br>
 
 ### 댓글 생성 / 삭제
 
@@ -191,6 +240,19 @@ def comment_delete(request, movie_pk, comment_pk):
         comment.delete()
         return Response({'id':comment_pk}, status=status.HTTP_204_NO_CONTENT)
 ```
+
+<br>
+
+### 마이페이지
+
+- 내가 좋아한 영화들을 조회
+- 내가 커뮤니티에 작성한 리뷰 조회
+
+![image-20210614161653861](README.assets/image-20210614161653861.png)
+
+<br>
+
+<br>
 
 ## 5. 느낀점
 

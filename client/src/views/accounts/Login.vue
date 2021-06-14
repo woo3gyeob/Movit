@@ -34,9 +34,9 @@
               <p class="forgotpassword" style="text-align:right; color:#d8d1b3; cursor:pointer;">forgot password?</p>
             </b-form-group>
             <br>
-            <button type="submit" class="btn btn-warning m-1">로그인</button>
-            &nbsp;
             <button type="reset" class="btn btn-dark m-1">Reset</button>
+            <button type="submit" class="btn btn-warning m-1">로그인</button>
+            <button @click="$router.push({name:'Signup'})" class="btn btn-warning m-1">회원가입</button>
           </b-form>
         </b-card>
       </div>

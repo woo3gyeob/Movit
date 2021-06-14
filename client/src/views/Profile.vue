@@ -2,6 +2,16 @@
   <div class="padding ">
     <div>
       <h1>{{username}}'s 마이페이지</h1>
+      <img :src="myProfileImg" alt="profile" style="border-radius:50%; width:3em; height:3em;">
+      <label for="avatar">Choose a profile picture:</label>
+      <input type="file"
+        id="avatar" name="avatar"
+        accept="image/png, image/jpeg"
+        v-on:change="updateImg"
+        ref="updateimg"
+      >
+      
+      
       <br><br>
       <hr>
       <nav>
@@ -81,6 +91,7 @@ export default {
     return {
       myReviews: [],
       myFavoriteMovies: [],
+      myProfileImg: '',
     }
   },
   methods:{
@@ -100,11 +111,32 @@ export default {
         .then(res => {
           this.myFavoriteMovies = res.data.liked_movie
           this.myReviews = res.data.review_set
+          this.myProfileImg = `http://127.0.0.1:8000${res.data.profileImg}`
+          console.log(res.data)
         })
         .catch(err => {
           console.log(err)
         })
     },
+    updateImg(event) {
+      console.log(event.target.files[0].name)
+      this.myProfileImg = `http://127.0.0.1:8000/media/image/${event.target.files[0].name}`
+      const fm = new FormData()
+      fm.append('profileImg', this.myProfileImg)
+      axios({
+        method:'post',
+        url:`http://127.0.0.1:8000/accounts/profile/`,
+        data: fm,
+        headers: this.setToken(),
+      })
+        .then(res => {
+          // this.myProfileImg = `http://127.0.0.1:8000${event.target.files[0].name}`
+          console.log(res.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
   },
   created () {
     this.getMyInfo()
